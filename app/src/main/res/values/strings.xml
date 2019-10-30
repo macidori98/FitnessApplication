@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">FitnessApplication</string>
+    <string name="login_username">Enter your username</string>
+    <string name="login_password">Enter your password</string>
+    <string name="login">Login</string>
+    <string name="login_registration">Registration</string>
 </resources>
