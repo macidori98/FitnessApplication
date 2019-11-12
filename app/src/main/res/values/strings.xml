@@ -4,4 +4,14 @@
     <string name="login_password">Enter your password</string>
     <string name="login">Login</string>
     <string name="login_registration">Registration</string>
+
+    <string name="reg_name">Enter your name</string>
+    <string name="reg_username">Enter your username</string>
+    <string name="reg_password">Enter your password</string>
+    <string name="reg_confirm_password">Confirm your password</string>
+    <string name="reg_button">Registration</string>
+
+    <string name="trainee_option_exercises">Exercises</string>
+    <string name="trainee_option_trainer">Trainers</string>
+    <string name="trainee_option_settings">Settings</string>
 </resources>
