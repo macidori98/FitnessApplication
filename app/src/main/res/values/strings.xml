@@ -14,4 +14,9 @@
     <string name="trainee_option_exercises">Exercises</string>
     <string name="trainee_option_trainer">Trainers</string>
     <string name="trainee_option_settings">Settings</string>
+
+    <string name="trainer_option_upload">Upload</string>
+    <string name="trainer_option_my_content">My content</string>
+    <string name="trainer_option_settings">Settings</string>
+
 </resources>

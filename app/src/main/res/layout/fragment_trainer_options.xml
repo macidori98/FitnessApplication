@@ -7,34 +7,32 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/button_option_trainee_exercises"
+        android:id="@+id/button_option_trainer_my_content"
+        android:layout_marginTop="150dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/trainee_option_exercises"
+        android:text="@string/trainer_option_my_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="150dp"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button_option_trainee_trainer"
+        android:id="@+id/button_option_trainer_upload"
+        android:layout_marginTop="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/trainee_option_trainer"
+        android:text="@string/trainer_option_upload"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="40dp"
-        app:layout_constraintTop_toBottomOf="@+id/button_option_trainee_exercises" />
+        app:layout_constraintTop_toBottomOf="@+id/button_option_trainer_my_content" />
 
     <Button
-        android:id="@+id/button_option_trainee_settings"
+        android:id="@+id/button_option_trainer_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/trainee_option_settings"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="15dp"
+        android:text="@string/trainer_option_settings"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_option_trainee_trainer"
-        app:layout_constraintVertical_bias="0.138" />
+        app:layout_constraintTop_toBottomOf="@+id/button_option_trainer_upload" />
 </androidx.constraintlayout.widget.ConstraintLayout>
