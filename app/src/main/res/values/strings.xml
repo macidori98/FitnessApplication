@@ -4,12 +4,16 @@
     <string name="login_password">Enter your password</string>
     <string name="login">Login</string>
     <string name="login_registration">Registration</string>
+    <string name="login_remember_me">Remember me</string>
+    <string name="login_auto_login">Auto login</string>
 
     <string name="reg_name">Enter your name</string>
     <string name="reg_username">Enter your username</string>
     <string name="reg_password">Enter your password</string>
     <string name="reg_confirm_password">Confirm your password</string>
     <string name="reg_button">Registration</string>
+    <string name="reg_user_already_exists">User already exists</string>
+    <string name="reg_user_created">User created</string>
 
     <string name="trainee_option_exercises">Exercises</string>
     <string name="trainee_option_trainer">Trainers</string>
@@ -18,5 +22,20 @@
     <string name="trainer_option_upload">Upload</string>
     <string name="trainer_option_my_content">My content</string>
     <string name="trainer_option_settings">Settings</string>
+
+
+    <string-array name="registration_user_types">
+        <item>Trainer</item>
+        <item>Trainee</item>
+    </string-array>
+
+    <string-array name="trainee_muscle_groups">
+        <item>Arms</item>
+        <item>Legs</item>
+        <item>Abs</item>
+        <item>Chest</item>
+        <item>Back</item>
+        <item>Shoulders</item>
+    </string-array>
 
 </resources>
