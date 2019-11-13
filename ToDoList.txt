@@ -1,8 +1,10 @@
-Vidami Mozes
--Database
--
+Vidámi Mózes
+-create Database connection (Firebase)
+-create database
 
-Szabo Dorottya
+
+Szabó Dorottya
 -Database
--Layouts - design
--
+-create Layouts - design
+-create fragments initializers
+-create adaptors for recyclerview
