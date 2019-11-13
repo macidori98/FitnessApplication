@@ -6,5 +6,6 @@ Vidámi Mózes
 Szabó Dorottya
 -Database
 -create Layouts - design
+-login sharedPreferences
 -create fragments initializers
 -create adaptors for recyclerview
