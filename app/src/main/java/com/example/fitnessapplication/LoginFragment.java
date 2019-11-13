@@ -74,7 +74,7 @@ public class LoginFragment extends Fragment {
         //database query
         //we check if the user is in database or not
 
-        //add data to shared preferences if the user exists in database
+        //add data to shared preferences if the user exists in database and remember me is checked
         if (chb_remember_me.isChecked()){
             SharedPreferences.Editor sharedPreferences = getActivity().getSharedPreferences(MY_LOGIN_SHARED_PREFERENCES, MODE_PRIVATE).edit();
             sharedPreferences.putString("username", et_username.getText().toString());
