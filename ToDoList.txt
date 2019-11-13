@@ -1,7 +1,7 @@
 Vidámi Mózes
 -create Database connection (Firebase)
 -create database
-
+-
 
 Szabó Dorottya
 -Database
@@ -9,3 +9,4 @@ Szabó Dorottya
 -login sharedPreferences
 -create fragments initializers
 -create adaptors for recyclerview
+-
