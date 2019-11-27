@@ -13,6 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -33,7 +35,12 @@ public class LoginFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_login, container, false);
 
         initializeViewElements(view);
-
+        tv_registration.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onRegisterClicked();
+            }
+        });
         return view;
     }
 
@@ -57,6 +64,7 @@ public class LoginFragment extends Fragment {
         tv_registration = view.findViewById(R.id.textView_login_register);
         chb_remember_me = view.findViewById(R.id.checkBox_remember_me);
         setLoginData();
+
     }
 
     private void setLoginData(){
@@ -82,5 +90,31 @@ public class LoginFragment extends Fragment {
             sharedPreferences.putBoolean("remember_me",true);
             sharedPreferences.apply();
         }
+
+        //if user is Trainer
+        if(1==1){
+            FragmentManager fm = getActivity().getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.replace(R.id.content_fragment, new TrainerOptionsFragment(), TrainerOptionsFragment.TAG);
+            fragmentTransaction.commit();
+        }
+        //if user is Trainee
+        if (12==1){
+            FragmentManager fm = getActivity().getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fm.beginTransaction();
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.replace(R.id.content_fragment, new TraineeHomeFragment(), TraineeHomeFragment.TAG);
+            fragmentTransaction.commit();
+        }
+
+    }
+
+    private void onRegisterClicked(){
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.replace(R.id.content_fragment, new RegistrationFragment(), RegistrationFragment.TAG);
+        fragmentTransaction.commit();
     }
 }
