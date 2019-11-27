@@ -93,28 +93,16 @@ public class LoginFragment extends Fragment {
 
         //if user is Trainer
         if(1==1){
-            FragmentManager fm = getActivity().getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fm.beginTransaction();
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.replace(R.id.content_fragment, new TrainerOptionsFragment(), TrainerOptionsFragment.TAG);
-            fragmentTransaction.commit();
+            FragmentNavigation.getInstance(getContext()).replaceFragment(new TrainerOptionsFragment(),R.id.content_fragment);
         }
         //if user is Trainee
         if (12==1){
-            FragmentManager fm = getActivity().getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fm.beginTransaction();
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.replace(R.id.content_fragment, new TraineeHomeFragment(), TraineeHomeFragment.TAG);
-            fragmentTransaction.commit();
+            FragmentNavigation.getInstance(getContext()).replaceFragment(new TraineeHomeFragment(),R.id.content_fragment);
         }
 
     }
 
     private void onRegisterClicked(){
-        FragmentManager fm = getActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.replace(R.id.content_fragment, new RegistrationFragment(), RegistrationFragment.TAG);
-        fragmentTransaction.commit();
+        FragmentNavigation.getInstance(getContext()).replaceFragment(new RegistrationFragment(),R.id.content_fragment);
     }
 }

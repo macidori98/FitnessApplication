@@ -66,27 +66,15 @@ public class TraineeHomeFragment extends Fragment {
     }
 
     private void onExercisesClicked(){
-        FragmentManager fm = getActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.replace(R.id.content_fragment, new TraineeMuscleGroupsFragment(), TraineeMuscleGroupsFragment.TAG);
-        fragmentTransaction.commit();
+        FragmentNavigation.getInstance(getContext()).replaceFragment(new TraineeMuscleGroupsFragment(),R.id.content_fragment);
     }
 
     private void onTrainersClicked(){
-        FragmentManager fm = getActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.replace(R.id.content_fragment, new TraineeTrainersFragment(), TraineeTrainersFragment.TAG);
-        fragmentTransaction.commit();
+        FragmentNavigation.getInstance(getContext()).replaceFragment(new TraineeTrainersFragment(),R.id.content_fragment);
     }
 
     private void onSettingsClicked(){
-        FragmentManager fm = getActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.replace(R.id.content_fragment, new TraineeSettingsFragment(), TraineeSettingsFragment.TAG);
-        fragmentTransaction.commit();
+        FragmentNavigation.getInstance(getContext()).replaceFragment(new TraineeSettingsFragment(),R.id.content_fragment);
     }
 
 }

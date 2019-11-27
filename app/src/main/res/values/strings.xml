@@ -38,6 +38,8 @@
         <item>Shoulders</item>
     </string-array>
 
+    <string name="back_button_press">Please click BACK again to exit!</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
