@@ -1,7 +1,5 @@
-package com.example.fitnessapplication;
+package com.example.fitnessapplication.Fragment;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,12 +8,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.fitnessapplication.Adapter.TraineeTrainerAdapter;
+import com.example.fitnessapplication.Interface.OnItemClickListener;
+import com.example.fitnessapplication.R;
+import com.example.fitnessapplication.Model.Trainer;
 
 import java.util.ArrayList;
 import java.util.List;
