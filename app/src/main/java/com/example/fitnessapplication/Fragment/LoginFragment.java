@@ -1,4 +1,4 @@
-package com.example.fitnessapplication;
+package com.example.fitnessapplication.Fragment;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,8 +13,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+
+import com.example.fitnessapplication.R;
+import com.example.fitnessapplication.Utils.FragmentNavigation;
 
 import static android.content.Context.MODE_PRIVATE;
 

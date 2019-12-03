@@ -6,6 +6,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
+import com.example.fitnessapplication.Fragment.LoginFragment;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
