@@ -1,6 +1,7 @@
 package com.example.fitnessapplication;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,16 +28,24 @@ public class RegistrationFragment extends Fragment {
     public static final String TAG = RegistrationFragment.class.getSimpleName();
 
     private View view;
+    FirebaseStorage storage;
+    StorageReference storageReference;
     private EditText et_name, et_username, et_password, et_confirm_password;
     private Button btn_registration;
     private RadioGroup rg_trainer_trainee;
     private String selectedUserType;
+    private FirebaseDatabase mDatabase;
+    private DatabaseReference mRef;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_registration, container, false);
-
+        //storage = FirebaseStorage.getInstance();
+        //storageReference = storage.getReference();
+        mDatabase = FirebaseDatabase.getInstance();
+        mRef = mDatabase.getReference(Constant.USERS);
         initializeViewElements(view);
 
         return view;
@@ -57,8 +70,17 @@ public class RegistrationFragment extends Fragment {
             boolean usernamePasswordLength = checkUsernameAndPasswordLength(et_username.getText().toString(),et_password.getText().toString());
 
             if (passwordsMatch && usernamePasswordLength){
-                //we add the user into database
-                Toast.makeText(getActivity(),R.string.reg_user_created, Toast.LENGTH_SHORT).show();
+                if(selectedUserType.equals("Trainer")) {
+                    User user = new User(et_name.getText().toString(), et_username.getText().toString(), et_password.getText().toString(), true, false);
+                    mRef.child(mRef.push().getKey()).setValue(user);//
+                    Toast.makeText(getActivity(),R.string.reg_user_created, Toast.LENGTH_SHORT).show();
+                } else {
+                    User user = new User(et_name.getText().toString(), et_username.getText().toString(), et_password.getText().toString(), false, true);
+                    mRef.child(mRef.push().getKey()).setValue(user);
+
+                    Toast.makeText(getActivity(),R.string.reg_user_created, Toast.LENGTH_SHORT).show();
+                }
+
             }
 
         } else {
