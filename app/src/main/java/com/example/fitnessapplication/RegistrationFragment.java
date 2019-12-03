@@ -72,7 +72,7 @@ public class RegistrationFragment extends Fragment {
             if (passwordsMatch && usernamePasswordLength){
                 if(selectedUserType.equals("Trainer")) {
                     User user = new User(et_name.getText().toString(), et_username.getText().toString(), et_password.getText().toString(), true, false);
-                    mRef.child(mRef.push().getKey()).setValue(user);
+                    mRef.child(mRef.push().getKey()).setValue(user);//
                     Toast.makeText(getActivity(),R.string.reg_user_created, Toast.LENGTH_SHORT).show();
                 } else {
                     User user = new User(et_name.getText().toString(), et_username.getText().toString(), et_password.getText().toString(), false, true);
