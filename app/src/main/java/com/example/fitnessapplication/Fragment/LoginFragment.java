@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.fitnessapplication.R;
+import com.example.fitnessapplication.Utils.Constant;
 import com.example.fitnessapplication.Utils.FragmentNavigation;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -61,7 +62,7 @@ public class LoginFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("users");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child(Constant.USERS);
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,10 +86,10 @@ public class LoginFragment extends Fragment {
     private void setLoginData(){
         //get data from shared preferences
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(MY_LOGIN_SHARED_PREFERENCES, MODE_PRIVATE);
-        boolean checkbox_isChecked = sharedPreferences.getBoolean("remember_me",false);
+        boolean checkbox_isChecked = sharedPreferences.getBoolean(Constant.REMEMBER_ME,false);
         if (checkbox_isChecked){
-            et_username.setText(sharedPreferences.getString("username","username"));
-            et_password.setText(sharedPreferences.getString("password","password"));
+            et_username.setText(sharedPreferences.getString(Constant.USERNAME,Constant.USERNAME));
+            et_password.setText(sharedPreferences.getString(Constant.PASSWORD,Constant.PASSWORD));
             chb_remember_me.setChecked(true);
         }
     }
@@ -102,27 +103,27 @@ public class LoginFragment extends Fragment {
                 String userRole = "";
                 boolean userFound = false;
                 for (DataSnapshot item : dataSnapshot.getChildren()) {
-                    String dbUsername = item.child("username").getValue().toString(); //constant
-                    String dbPassword = item.child("password").getValue().toString();//constant
+                    String dbUsername = item.child(Constant.USERNAME).getValue().toString(); //constant
+                    String dbPassword = item.child(Constant.PASSWORD).getValue().toString();//constant
                     if (dbUsername.equals(et_username.getText().toString()) && dbPassword.equals(et_password.getText().toString())) {
                         userFound = true;
                         //add data to shared preferences if the user exists in database and remember me is checked
                         if (chb_remember_me.isChecked()) {
                             SharedPreferences.Editor sharedPreferences = getActivity().getSharedPreferences(MY_LOGIN_SHARED_PREFERENCES, MODE_PRIVATE).edit();
-                            sharedPreferences.putString("username", et_username.getText().toString());
-                            sharedPreferences.putString("password", et_password.getText().toString());
-                            sharedPreferences.putBoolean("remember_me", true);
+                            sharedPreferences.putString(Constant.USERNAME, et_username.getText().toString());
+                            sharedPreferences.putString(Constant.PASSWORD, et_password.getText().toString());
+                            sharedPreferences.putBoolean(Constant.REMEMBER_ME, true);
                             sharedPreferences.apply();
                         }
 
-                        if (item.child("trainer").getValue().toString().equals("true")) {
-                            userRole = "Trainer";
+                        if (Boolean.valueOf(item.child(Constant.TRAINER).getValue().toString())) {
+                            userRole = Constant.TRAINER;
                         } else {
-                            userRole = "Trainee";
+                            userRole = Constant.TRAINEE;
                         }
 
                         //if user is Trainer
-                        if(userRole.equals("Trainer")){
+                        if(userRole.equals(Constant.TRAINER)){
                             FragmentNavigation.getInstance(getContext()).replaceFragment(new TrainerOptionsFragment(),R.id.content_fragment);
                         } else {
                             FragmentNavigation.getInstance(getContext()).replaceFragment(new TraineeHomeFragment(),R.id.content_fragment);
@@ -131,7 +132,7 @@ public class LoginFragment extends Fragment {
                     }
                 }
                 if(userFound == false) {
-                    Toast.makeText(getActivity(), "User not Found", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.user_not_found, Toast.LENGTH_SHORT).show();
                 }
             }
 
