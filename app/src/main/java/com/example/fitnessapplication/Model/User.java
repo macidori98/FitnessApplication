@@ -4,13 +4,14 @@ public class User {
 
     public static final String TAG = User.class.getSimpleName();
 
-    private String name, username, password;
+    private String name, username, password, id;
     private boolean trainer, trainee;
 
     public User() {
     }
 
-    public User(String name, String username, String password, boolean trainer, boolean trainee) {
+    public User(String id, String name, String username, String password, boolean trainer, boolean trainee) {
+        this.id = id;
         this.name = name;
         this.username = username;
         this.password = password;
@@ -36,5 +37,9 @@ public class User {
 
     public boolean isTrainee() {
         return trainee;
+    }
+
+    public String getId() {
+        return id;
     }
 }

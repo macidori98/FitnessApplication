@@ -1,5 +1,6 @@
 package com.example.fitnessapplication.Fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,10 +20,12 @@ import com.example.fitnessapplication.MainActivity;
 import com.example.fitnessapplication.R;
 import com.example.fitnessapplication.Model.User;
 import com.example.fitnessapplication.Utils.Constant;
+import com.example.fitnessapplication.Utils.FragmentNavigation;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Arrays;
 import java.util.List;
@@ -32,8 +35,6 @@ public class RegistrationFragment extends Fragment {
     public static final String TAG = RegistrationFragment.class.getSimpleName();
 
     private View view;
-    FirebaseStorage storage;
-    StorageReference storageReference;
     private EditText et_name, et_username, et_password, et_confirm_password;
     private Button btn_registration;
     private RadioGroup rg_trainer_trainee;
@@ -41,13 +42,11 @@ public class RegistrationFragment extends Fragment {
     private FirebaseDatabase mDatabase;
     private DatabaseReference mRef;
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_registration, container, false);
-        //storage = FirebaseStorage.getInstance();
-        //storageReference = storage.getReference();
+
         mDatabase = FirebaseDatabase.getInstance();
         mRef = mDatabase.getReference(Constant.USERS);
         initializeViewElements(view);
@@ -62,25 +61,26 @@ public class RegistrationFragment extends Fragment {
         btn_registration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addUserToDatabase();
+                login();
             }
         });
 
     }
 
-    private void addUserToDatabase(){
+    /*private void addUserToDatabase(){
         if (!isUserAlreadyExistsInDatabase()){
             boolean passwordsMatch = checkEnteredPasswordMatch(et_password.getText().toString(), et_confirm_password.getText().toString());
             boolean usernamePasswordLength = checkUsernameAndPasswordLength(et_username.getText().toString(),et_password.getText().toString());
 
             if (passwordsMatch && usernamePasswordLength){
+                String KEY = mRef.push().getKey();
                 if(selectedUserType.equals("Trainer")) {
-                    User user = new User(et_name.getText().toString(), et_username.getText().toString(), et_password.getText().toString(), true, false);
-                    mRef.child(mRef.push().getKey()).setValue(user);//
+                    User user = new User(KEY, et_name.getText().toString(), et_username.getText().toString(), et_password.getText().toString(), true, false);
+                    mRef.child(KEY).setValue(user);//
                     Toast.makeText(getActivity(),R.string.reg_user_created, Toast.LENGTH_SHORT).show();
                 } else {
-                    User user = new User(et_name.getText().toString(), et_username.getText().toString(), et_password.getText().toString(), false, true);
-                    mRef.child(mRef.push().getKey()).setValue(user);
+                    User user = new User(KEY, et_name.getText().toString(), et_username.getText().toString(), et_password.getText().toString(), false, true);
+                    mRef.child(KEY).setValue(user);
 
                     Toast.makeText(getActivity(),R.string.reg_user_created, Toast.LENGTH_SHORT).show();
                 }
@@ -91,10 +91,46 @@ public class RegistrationFragment extends Fragment {
             //otherwise we make a toast that he already exists
             Toast.makeText(getActivity(),R.string.reg_user_already_exists, Toast.LENGTH_SHORT).show();
         }
-    }
+    }*/
 
-    private boolean isUserAlreadyExistsInDatabase(){
-        return false;
+    private void login(){
+        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                boolean found = false;
+                for (DataSnapshot snapshot: dataSnapshot.getChildren()){
+                    if (snapshot.child(Constant.USERNAME).getValue().toString().equals(et_username.getText().toString())){
+                        found = true;
+                        Toast.makeText(getActivity(),R.string.reg_user_already_exists, Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                }
+
+                if (!found){
+                    boolean passwordsMatch = checkEnteredPasswordMatch(et_password.getText().toString(), et_confirm_password.getText().toString());
+                    boolean usernamePasswordLength = checkUsernameAndPasswordLength(et_username.getText().toString(),et_password.getText().toString());
+                    if (passwordsMatch && usernamePasswordLength){
+                        String KEY = mRef.push().getKey();
+                        if(selectedUserType.equals("Trainer")) {
+                            User user = new User(KEY, et_name.getText().toString(), et_username.getText().toString(), et_password.getText().toString(), true, false);
+                            mRef.child(KEY).setValue(user);
+                            Toast.makeText(getActivity(),R.string.reg_user_created, Toast.LENGTH_SHORT).show();
+                        } else {
+                            User user = new User(KEY, et_name.getText().toString(), et_username.getText().toString(), et_password.getText().toString(), false, true);
+                            mRef.child(KEY).setValue(user);
+                            Toast.makeText(getActivity(),R.string.reg_user_created, Toast.LENGTH_SHORT).show();
+                        }
+                        FragmentNavigation.getInstance(getContext()).onBackPressed((MainActivity) getActivity());
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
 
