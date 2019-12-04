@@ -36,12 +36,14 @@ public class LoginFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_login, container, false);
 
         initializeViewElements(view);
+
         tv_registration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onRegisterClicked();
             }
         });
+
         return view;
     }
 
