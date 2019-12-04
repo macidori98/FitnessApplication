@@ -14,6 +14,9 @@
     <string name="reg_button">Registration</string>
     <string name="reg_user_already_exists">User already exists</string>
     <string name="reg_user_created">User created</string>
+    <string name="reg_select_user_type">Select an user type</string>
+    <string name="reg_password_dont_match">Inserted passwords don't match</string>
+    <string name="reg_characters_fail">You have to insert at least 6 characters</string>
 
     <string name="trainee_option_exercises">Exercises</string>
     <string name="trainee_option_trainer">Trainers</string>
