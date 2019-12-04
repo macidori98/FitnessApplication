@@ -96,7 +96,7 @@ public class LoginFragment extends Fragment {
 
         //if user is Trainer
         if(1==1){
-            FragmentNavigation.getInstance(getContext()).replaceFragment(new TrainerOptionsFragment(),R.id.content_fragment);
+            FragmentNavigation.getInstance(getContext()).replaceFragment(new TraineeHomeFragment(),R.id.content_fragment);
         }
         //if user is Trainee
         if (12==1){
