@@ -67,81 +67,75 @@ public class RegistrationFragment extends Fragment {
 
     }
 
-    /*private void addUserToDatabase(){
-        if (!isUserAlreadyExistsInDatabase()){
-            boolean passwordsMatch = checkEnteredPasswordMatch(et_password.getText().toString(), et_confirm_password.getText().toString());
-            boolean usernamePasswordLength = checkUsernameAndPasswordLength(et_username.getText().toString(),et_password.getText().toString());
-
-            if (passwordsMatch && usernamePasswordLength){
-                String KEY = mRef.push().getKey();
-                if(selectedUserType.equals("Trainer")) {
-                    User user = new User(KEY, et_name.getText().toString(), et_username.getText().toString(), et_password.getText().toString(), true, false);
-                    mRef.child(KEY).setValue(user);//
-                    Toast.makeText(getActivity(),R.string.reg_user_created, Toast.LENGTH_SHORT).show();
-                } else {
-                    User user = new User(KEY, et_name.getText().toString(), et_username.getText().toString(), et_password.getText().toString(), false, true);
-                    mRef.child(KEY).setValue(user);
-
-                    Toast.makeText(getActivity(),R.string.reg_user_created, Toast.LENGTH_SHORT).show();
-                }
-
-            }
-
-        } else {
-            //otherwise we make a toast that he already exists
-            Toast.makeText(getActivity(),R.string.reg_user_already_exists, Toast.LENGTH_SHORT).show();
-        }
-    }*/
-
     private void login(){
-        mRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                boolean found = false;
-                for (DataSnapshot snapshot: dataSnapshot.getChildren()){
-                    if (snapshot.child(Constant.USERNAME).getValue().toString().equals(et_username.getText().toString())){
-                        found = true;
-                        Toast.makeText(getActivity(),R.string.reg_user_already_exists, Toast.LENGTH_SHORT).show();
-                        break;
+        if (checkIfInsertedDatasAreCorrect()) {
+            mRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    boolean found = false;
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        if (snapshot.child(Constant.USERNAME).getValue().toString().equals(et_username.getText().toString())) {
+                            found = true;
+                            Toast.makeText(getActivity(), R.string.reg_user_already_exists, Toast.LENGTH_SHORT).show();
+                            break;
+                        }
                     }
-                }
 
-                if (!found){
-                    boolean passwordsMatch = checkEnteredPasswordMatch(et_password.getText().toString(), et_confirm_password.getText().toString());
-                    boolean usernamePasswordLength = checkUsernameAndPasswordLength(et_username.getText().toString(),et_password.getText().toString());
-                    if (passwordsMatch && usernamePasswordLength){
+                    if (!found) {
                         String KEY = mRef.push().getKey();
-                        if(selectedUserType.equals("Trainer")) {
+                        if (selectedUserType.equals("Trainer")) {
                             User user = new User(KEY, et_name.getText().toString(), et_username.getText().toString(), et_password.getText().toString(), true, false);
                             mRef.child(KEY).setValue(user);
-                            Toast.makeText(getActivity(),R.string.reg_user_created, Toast.LENGTH_SHORT).show();
-                        } else {
+                            Toast.makeText(getActivity(), R.string.reg_user_created, Toast.LENGTH_SHORT).show();
+                        } else if (selectedUserType.equals("Trainee")) {
                             User user = new User(KEY, et_name.getText().toString(), et_username.getText().toString(), et_password.getText().toString(), false, true);
                             mRef.child(KEY).setValue(user);
-                            Toast.makeText(getActivity(),R.string.reg_user_created, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), R.string.reg_user_created, Toast.LENGTH_SHORT).show();
                         }
                         FragmentNavigation.getInstance(getContext()).onBackPressed((MainActivity) getActivity());
                     }
+
                 }
 
-            }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+                }
+            });
+        }
     }
 
 
     //username should contain 6 characters
     //password should contain 6 characters
-    private boolean checkUsernameAndPasswordLength(String username, String password){
-        return username.length() >= 6 && password.length() >= 6;
+    //name should contain 6 characters
+    private boolean checkNameAndUsernameAndPasswordLength(String username, String password, String name){
+        return username.length() >= 6 && password.length() >= 6 && name.length() >= 6;
     }
 
     private boolean checkEnteredPasswordMatch(String password, String confirm_password){
         return password.equals(confirm_password);
+    }
+
+    private boolean checkIfInsertedDatasAreCorrect(){
+        if (selectedUserType == null){
+            Toast.makeText(getContext(), R.string.reg_select_user_type, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        boolean passwordsMatch = checkEnteredPasswordMatch(et_password.getText().toString(), et_confirm_password.getText().toString());
+        boolean usernamePasswordLength = checkNameAndUsernameAndPasswordLength(et_username.getText().toString(),et_password.getText().toString(), et_name.getText().toString());
+        if (!passwordsMatch){
+            Toast.makeText(getContext(), R.string.reg_password_dont_match, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(!usernamePasswordLength){
+            Toast.makeText(getContext(), R.string.reg_characters_fail, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
     }
 
     private void initializeViewElements(View view){
