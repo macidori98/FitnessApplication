@@ -52,8 +52,8 @@ public class TraineeTrainerAdapter extends RecyclerView.Adapter<TraineeTrainerAd
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.tv_trainer_name.setText(list_trainers.get(position).getUser_id());
-        holder.tv_trainer_username.setText(list_trainers.get(position).getUsername());
+        holder.tv_trainer_name.setText(list_trainers.get(position).getTrainer_name());
+        holder.tv_trainer_username.setText(list_trainers.get(position).getTrainer_username());
     }
 
     @NonNull

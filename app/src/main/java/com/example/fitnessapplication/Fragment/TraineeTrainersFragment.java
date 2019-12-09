@@ -17,6 +17,12 @@ import com.example.fitnessapplication.Adapter.TraineeTrainerAdapter;
 import com.example.fitnessapplication.Interface.OnItemClickListener;
 import com.example.fitnessapplication.R;
 import com.example.fitnessapplication.Model.Trainer;
+import com.example.fitnessapplication.Utils.Constant;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +35,7 @@ public class TraineeTrainersFragment extends Fragment {
     private TraineeTrainerAdapter trainerAdapter;
     private List<Trainer> trainerslist;
     private RecyclerView mRecyclerView;
+    private DatabaseReference mDatabase;
 
     @Nullable
     @Override
@@ -36,6 +43,7 @@ public class TraineeTrainersFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_trainee_trainers, container, false);
         mRecyclerView = view.findViewById(R.id.recyclerView_trainee_trainers);
         trainerslist = new ArrayList<>();
+        mDatabase = FirebaseDatabase.getInstance().getReference().child(Constant.USERS);
         return view;
     }
 
@@ -44,16 +52,37 @@ public class TraineeTrainersFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         //fill trainerslist with trainers from database
-        trainerslist.add(new Trainer("alma","korte"));
-        trainerAdapter = new TraineeTrainerAdapter(getContext(), trainerslist);
-        trainerAdapter.setOnClickListener(new OnItemClickListener() {
+
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onItemClick(int position) {
-                //onclick should do something useful
-                Toast.makeText(getContext(), "X", Toast.LENGTH_SHORT).show();
-                Trainer pickedTrainer = trainerslist.get(trainerAdapter.getSelectedPosition());
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot item : dataSnapshot.getChildren()) {
+                    if(Boolean.valueOf(item.child(Constant.TRAINER).getValue().toString())){
+                        String dbUsername = item.child(Constant.USERNAME).getValue().toString();
+                        String dbName = item.child(Constant.NAME).getValue().toString();
+                        Trainer dbTrainer = new Trainer(dbName,dbUsername);
+                        trainerslist.add(dbTrainer);
+                    }
+                }
+                //create adapter with the previously aquired list
+                trainerAdapter = new TraineeTrainerAdapter(getContext(), trainerslist);
+                trainerAdapter.setOnClickListener(new OnItemClickListener() {
+                    @Override
+                    public void onItemClick(int position) {
+                        //onclick should do something useful
+                        Toast.makeText(getContext(), "X", Toast.LENGTH_SHORT).show();
+                        Trainer pickedTrainer = trainerslist.get(trainerAdapter.getSelectedPosition());
+                    }
+                });
+                mRecyclerView.setAdapter(trainerAdapter);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                //log
             }
         });
-        mRecyclerView.setAdapter(trainerAdapter);
+
     }
 }
