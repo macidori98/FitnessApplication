@@ -15,7 +15,7 @@ import com.example.fitnessapplication.R;
 
 public class TraineeSettingsFragment extends Fragment {
 
-    public final static String TAG = TraineeTrainersFragment.class.getSimpleName();
+    public final static String TAG = TraineeSettingsFragment.class.getSimpleName();
     private View view;
 
     @Nullable
