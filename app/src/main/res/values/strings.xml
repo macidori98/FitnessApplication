@@ -26,6 +26,13 @@
     <string name="trainer_option_my_content">My content</string>
     <string name="trainer_option_settings">Settings</string>
 
+    <string name="trainee_muscle_group_arms">Arms</string>
+    <string name="trainee_muscle_group_legs">Legs</string>
+    <string name="trainee_muscle_group_abs">Abs</string>
+    <string name="trainee_muscle_group_chest">Chest</string>
+    <string name="trainee_muscle_group_back">Back</string>
+    <string name="trainee_muscle_group_shoulders">Shoulders</string>
+
 
     <string-array name="registration_user_types">
         <item>Trainer</item>

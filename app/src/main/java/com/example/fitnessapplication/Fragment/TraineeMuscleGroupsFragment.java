@@ -6,12 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.fitnessapplication.R;
+import com.example.fitnessapplication.Utils.Constant;
+import com.example.fitnessapplication.Utils.FragmentNavigation;
 
 import java.util.Arrays;
 import java.util.List;
@@ -41,11 +44,14 @@ public class TraineeMuscleGroupsFragment extends Fragment {
     private void addButtons(){
         final List<String> buttonString = Arrays.asList(getResources().getStringArray(R.array.trainee_muscle_groups));
         for (int i = 0; i < buttonString.size(); ++i){
+            final int ii = i;
             Button btn = new Button(getContext());
             btn.setText(buttonString.get(i));
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    Constant.SELECTED_MUSCLE_GROUP = buttonString.get(ii);
+                    FragmentNavigation.getInstance(getContext()).replaceFragment(new TraineeMuscleGroupExercisesFragment(), R.id.content_fragment);
                     //go to fragment trainee muscle group exercises
                     //passing somehow which muscle group should be shown
                 }
