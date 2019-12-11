@@ -61,11 +61,11 @@ public class TraineeMuscleGroupExercisesFragment extends Fragment {
                     String snapshot_muscle_group = snapshot.child(Constant.MUSCLE_GROUP).getValue().toString().toLowerCase();
                     if (snapshot_muscle_group.equals(muscle_group)){
                         String id = snapshot.child(Constant.ID).getValue().toString();
-                        String trainer = snapshot.child(Constant.TRAINER).getValue().toString();
+                        String trainer_id = snapshot.child(Constant.TRAINER_ID).getValue().toString();
                         String url = snapshot.child(Constant.URL).getValue().toString();
                         String title = snapshot.child(Constant.TITLE).getValue().toString();
                         String description = snapshot.child(Constant.DESCRIPTION).getValue().toString();
-                        ExerciseVideo exerciseVideo = new ExerciseVideo(id,trainer, url, title, muscle_group, description);
+                        ExerciseVideo exerciseVideo = new ExerciseVideo(id,trainer_id, url, title, muscle_group, description);
                         videoList.add(exerciseVideo);
                     }
                 }
