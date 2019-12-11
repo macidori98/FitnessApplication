@@ -33,7 +33,7 @@ public class TraineeTrainersFragment extends Fragment {
 
     private View view;
     private TraineeTrainerAdapter trainerAdapter;
-    private List<Trainer> trainerslist;
+    private List<Trainer> trainerList;
     private RecyclerView mRecyclerView;
     private DatabaseReference mDatabase;
 
@@ -42,8 +42,9 @@ public class TraineeTrainersFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_trainee_trainers, container, false);
         mRecyclerView = view.findViewById(R.id.recyclerView_trainee_trainers);
-        trainerslist = new ArrayList<>();
+        trainerList = new ArrayList<>();
         mDatabase = FirebaseDatabase.getInstance().getReference().child(Constant.USERS);
+        getTrainers();
         return view;
     }
 
@@ -51,8 +52,9 @@ public class TraineeTrainersFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        //fill trainerslist with trainers from database
+    }
 
+    private void getTrainers(){
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -60,18 +62,19 @@ public class TraineeTrainersFragment extends Fragment {
                     if(Boolean.valueOf(item.child(Constant.TRAINER).getValue().toString())){
                         String dbUsername = item.child(Constant.USERNAME).getValue().toString();
                         String dbName = item.child(Constant.NAME).getValue().toString();
-                        Trainer dbTrainer = new Trainer(dbName,dbUsername);
-                        trainerslist.add(dbTrainer);
+                        String id = item.child(Constant.ID).getValue().toString();
+                        Trainer dbTrainer = new Trainer(id,dbName,dbUsername);
+                        trainerList.add(dbTrainer);
                     }
                 }
                 //create adapter with the previously aquired list
-                trainerAdapter = new TraineeTrainerAdapter(getContext(), trainerslist);
+                trainerAdapter = new TraineeTrainerAdapter(getContext(), trainerList);
                 trainerAdapter.setOnClickListener(new OnItemClickListener() {
                     @Override
                     public void onItemClick(int position) {
                         //onclick should do something useful
                         Toast.makeText(getContext(), "X", Toast.LENGTH_SHORT).show();
-                        Trainer pickedTrainer = trainerslist.get(trainerAdapter.getSelectedPosition());
+                        Trainer pickedTrainer = trainerList.get(trainerAdapter.getSelectedPosition());
                     }
                 });
                 mRecyclerView.setAdapter(trainerAdapter);
@@ -83,6 +86,5 @@ public class TraineeTrainersFragment extends Fragment {
                 //log
             }
         });
-
     }
 }

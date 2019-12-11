@@ -14,9 +14,11 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import com.example.fitnessapplication.Model.ExerciseVideo;
+import com.example.fitnessapplication.Model.User;
 import com.example.fitnessapplication.R;
 import com.example.fitnessapplication.Utils.Constant;
 import com.example.fitnessapplication.Utils.FragmentNavigation;
@@ -108,6 +110,10 @@ public class LoginFragment extends Fragment {
                     String dbPassword = item.child(Constant.PASSWORD).getValue().toString();//constant
                     if (dbUsername.equals(et_username.getText().toString()) && dbPassword.equals(et_password.getText().toString())) {
                         userFound = true;
+                        String name = item.child(Constant.USERNAME).getValue().toString();
+                        String id = item.child(Constant.ID).getValue().toString();
+                        boolean trainer, trainee;
+
                         //add data to shared preferences if the user exists in database and remember me is checked
                         if (chb_remember_me.isChecked()) {
                             SharedPreferences.Editor sharedPreferences = getActivity().getSharedPreferences(MY_LOGIN_SHARED_PREFERENCES, MODE_PRIVATE).edit();
@@ -119,19 +125,26 @@ public class LoginFragment extends Fragment {
 
                         if (Boolean.valueOf(item.child(Constant.TRAINER).getValue().toString())) {
                             userRole = Constant.TRAINER;
+                            trainee = false;
+                            trainer = true;
                         } else {
                             userRole = Constant.TRAINEE;
+                            trainee = true;
+                            trainer = false;
                         }
+
+                        User user = new User(id, name, dbUsername, dbPassword, trainer, trainee);
+                        Constant.CURRENT_USER = user;
 
                         //if user is Trainer
                         if(userRole.equals(Constant.TRAINER)){
                             FragmentNavigation.getInstance(getContext()).replaceFragment(new TrainerOptionsFragment(),R.id.content_fragment);
                         } else {
-                            /*FirebaseDatabase p = FirebaseDatabase.getInstance();
+                            FirebaseDatabase p = FirebaseDatabase.getInstance();
                             DatabaseReference ref = p.getReference(Constant.EXERCISE_VIDEO);
                             String key = ref.push().getKey();
                             ExerciseVideo v = new ExerciseVideo(key, "trainer_id", "https://firebasestorage.googleapis.com/v0/b/fitnessapplication-ee505.appspot.com/o/video%2FArms%2Fvideo-1575819762.mp4?alt=media&token=899445dd-e6cf-4399-b391-e7824b34aa65", "Maci", "Arms", "bla bla bla");
-                            ref.child(key).setValue(v);*/
+                            ref.child(key).setValue(v);
                             FragmentNavigation.getInstance(getContext()).replaceFragment(new TraineeHomeFragment(),R.id.content_fragment);
                         }
                         break;

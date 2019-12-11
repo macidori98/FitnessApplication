@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.example.fitnessapplication.Fragment.LoginFragment;
+import com.example.fitnessapplication.Utils.FragmentNavigation;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,10 +16,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.replace(R.id.content_fragment, new LoginFragment(), LoginFragment.TAG);
-        fragmentTransaction.commit();
+        FragmentNavigation.getInstance(this).replaceFragment(new LoginFragment(), R.id.content_fragment);
+    }
+
+    @Override
+    public void onBackPressed() {
+        FragmentNavigation.getInstance(getApplicationContext()).onBackPressed(this);
     }
 }
