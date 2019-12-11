@@ -9,7 +9,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.fitnessapplication.Fragment.LoginFragment;
 import com.example.fitnessapplication.Fragment.RegistrationFragment;
+import com.example.fitnessapplication.Fragment.TraineeHomeFragment;
+import com.example.fitnessapplication.Fragment.TraineeMuscleGroupExercisesFragment;
 import com.example.fitnessapplication.MainActivity;
 import com.example.fitnessapplication.R;
 
@@ -69,24 +72,28 @@ public class FragmentNavigation extends Fragment{
 
     public void onBackPressed(MainActivity activity) {
 
-        // If Home page is open: double press exit:
+        if( getCurrentFragment(mMainActivityFragmentContainer) instanceof LoginFragment) {
+            doublePressExit(activity);
+            return;
+        }
+
+        if( getCurrentFragment(mMainActivityFragmentContainer) instanceof TraineeMuscleGroupExercisesFragment) {
+            popBackstack();
+            return;
+        }
+
         if( getCurrentFragment(mMainActivityFragmentContainer) instanceof RegistrationFragment) {
             popBackstack();
             return;
         }
 
-        /*if( getCurrentFragment(mMainActivityFragmentContainer) instanceof AdminHomePageFragment) {
-            popBackstack();
-            return;
-        }
-
-        if( getCurrentFragment(mMainActivityFragmentContainer) instanceof AdminGroupQuestionFragment) {
+        if( getCurrentFragment(mMainActivityFragmentContainer) instanceof TraineeHomeFragment) {
             popBackstack();
             return;
         }
 
         // Other cases:
-        activity.moveTaskToBack(true);/*/
+        activity.moveTaskToBack(true);
     }
 
     private void doublePressExit(MainActivity activity) {
