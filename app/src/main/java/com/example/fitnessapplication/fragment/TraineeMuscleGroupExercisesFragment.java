@@ -1,4 +1,4 @@
-package com.example.fitnessapplication.Fragment;
+package com.example.fitnessapplication.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,10 +12,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.fitnessapplication.Adapter.TraineeMuscleGroupExercisesAdapter;
-import com.example.fitnessapplication.Model.ExerciseVideo;
 import com.example.fitnessapplication.R;
-import com.example.fitnessapplication.Utils.Constant;
+import com.example.fitnessapplication.adapter.TraineeMuscleGroupExercisesAdapter;
+import com.example.fitnessapplication.model.ExerciseVideo;
+import com.example.fitnessapplication.utils.Constant;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -52,20 +52,20 @@ public class TraineeMuscleGroupExercisesFragment extends Fragment {
         return view;
     }
 
-    private void getData(){
+    private void getData() {
         final String muscle_group = Constant.SELECTED_MUSCLE_GROUP.toLowerCase();
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String snapshot_muscle_group = snapshot.child(Constant.MUSCLE_GROUP).getValue().toString().toLowerCase();
-                    if (snapshot_muscle_group.equals(muscle_group)){
+                    if (snapshot_muscle_group.equals(muscle_group)) {
                         String id = snapshot.child(Constant.ID).getValue().toString();
-                        String trainer = snapshot.child(Constant.TRAINER).getValue().toString();
+                        String trainer_id = snapshot.child(Constant.TRAINER_ID).getValue().toString();
                         String url = snapshot.child(Constant.URL).getValue().toString();
                         String title = snapshot.child(Constant.TITLE).getValue().toString();
                         String description = snapshot.child(Constant.DESCRIPTION).getValue().toString();
-                        ExerciseVideo exerciseVideo = new ExerciseVideo(id,trainer, url, title, muscle_group, description);
+                        ExerciseVideo exerciseVideo = new ExerciseVideo(id, trainer_id, url, title, muscle_group, description);
                         videoList.add(exerciseVideo);
                     }
                 }

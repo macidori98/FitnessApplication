@@ -1,4 +1,4 @@
-package com.example.fitnessapplication.Model;
+package com.example.fitnessapplication.model;
 
 public class User {
 

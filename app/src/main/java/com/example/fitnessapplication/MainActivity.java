@@ -1,13 +1,11 @@
 package com.example.fitnessapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.os.Bundle;
 
-import com.example.fitnessapplication.Fragment.LoginFragment;
-import com.example.fitnessapplication.Utils.FragmentNavigation;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.fitnessapplication.fragment.LoginFragment;
+import com.example.fitnessapplication.utils.FragmentNavigation;
 
 public class MainActivity extends AppCompatActivity {
 

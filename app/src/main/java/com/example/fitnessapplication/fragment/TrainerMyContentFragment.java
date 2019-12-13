@@ -1,4 +1,4 @@
-package com.example.fitnessapplication.Fragment;
+package com.example.fitnessapplication.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -32,7 +32,7 @@ public class TrainerMyContentFragment extends Fragment {
     }
 
 
-    private void initializeViewElements(View view){
+    private void initializeViewElements(View view) {
 
     }
 }
