@@ -1,6 +1,7 @@
-package com.example.fitnessapplication.Utils;
+package com.example.fitnessapplication.utils;
 
-import com.example.fitnessapplication.Model.User;
+import com.example.fitnessapplication.model.Trainer;
+import com.example.fitnessapplication.model.User;
 
 public class Constant {
     public static final String USERS = "users";
@@ -20,4 +21,5 @@ public class Constant {
     public static final String REMEMBER_ME = "remember_me";
     public static String SELECTED_MUSCLE_GROUP;
     public static User CURRENT_USER;
+    public static Trainer SELECTED_TRAINER;
 }

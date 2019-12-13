@@ -1,6 +1,9 @@
-package com.example.fitnessapplication.Fragment;
+package com.example.fitnessapplication.fragment;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -8,16 +11,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
-
-import com.example.fitnessapplication.Adapter.TraineeTrainerAdapter;
-import com.example.fitnessapplication.Interface.OnItemClickListener;
 import com.example.fitnessapplication.R;
-import com.example.fitnessapplication.Model.Trainer;
-import com.example.fitnessapplication.Utils.Constant;
+import com.example.fitnessapplication.adapter.TraineeTrainerAdapter;
+import com.example.fitnessapplication.interfaces.OnItemClickListener;
+import com.example.fitnessapplication.model.Trainer;
+import com.example.fitnessapplication.utils.Constant;
+import com.example.fitnessapplication.utils.FragmentNavigation;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -54,16 +53,16 @@ public class TraineeTrainersFragment extends Fragment {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
-    private void getTrainers(){
+    private void getTrainers() {
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot item : dataSnapshot.getChildren()) {
-                    if(Boolean.valueOf(item.child(Constant.TRAINER).getValue().toString())){
+                    if (Boolean.valueOf(item.child(Constant.TRAINER).getValue().toString())) {
                         String dbUsername = item.child(Constant.USERNAME).getValue().toString();
                         String dbName = item.child(Constant.NAME).getValue().toString();
                         String id = item.child(Constant.ID).getValue().toString();
-                        Trainer dbTrainer = new Trainer(id,dbName,dbUsername);
+                        Trainer dbTrainer = new Trainer(id, dbName, dbUsername);
                         trainerList.add(dbTrainer);
                     }
                 }
@@ -72,13 +71,11 @@ public class TraineeTrainersFragment extends Fragment {
                 trainerAdapter.setOnClickListener(new OnItemClickListener() {
                     @Override
                     public void onItemClick(int position) {
-                        //onclick should do something useful
-                        Toast.makeText(getContext(), "X", Toast.LENGTH_SHORT).show();
-                        Trainer pickedTrainer = trainerList.get(trainerAdapter.getSelectedPosition());
+                        Constant.SELECTED_TRAINER = trainerList.get(position);
+                        FragmentNavigation.getInstance(getContext()).replaceFragment(new TraineeTrainerMyContentFragment(), R.id.content_fragment);
                     }
                 });
                 mRecyclerView.setAdapter(trainerAdapter);
-
             }
 
             @Override

@@ -1,19 +1,18 @@
-package com.example.fitnessapplication.Fragment;
+package com.example.fitnessapplication.fragment;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.example.fitnessapplication.R;
-import com.example.fitnessapplication.Utils.FragmentNavigation;
+import com.example.fitnessapplication.utils.FragmentNavigation;
 
 
 public class TraineeHomeFragment extends Fragment {
@@ -57,23 +56,23 @@ public class TraineeHomeFragment extends Fragment {
         });
     }
 
-    private void initializeViewElements(View view){
+    private void initializeViewElements(View view) {
         btn_exercises = view.findViewById(R.id.button_home_trainee_exercises);
         btn_trainers = view.findViewById(R.id.button_home_trainee_trainer);
         btn_trainee_settings = view.findViewById(R.id.button_home_trainee_settings);
 
     }
 
-    private void onExercisesClicked(){
-        FragmentNavigation.getInstance(getContext()).replaceFragment(new TraineeMuscleGroupsFragment(),R.id.content_fragment);
+    private void onExercisesClicked() {
+        FragmentNavigation.getInstance(getContext()).replaceFragment(new TraineeMuscleGroupsFragment(), R.id.content_fragment);
     }
 
-    private void onTrainersClicked(){
-        FragmentNavigation.getInstance(getContext()).replaceFragment(new TraineeTrainersFragment(),R.id.content_fragment);
+    private void onTrainersClicked() {
+        FragmentNavigation.getInstance(getContext()).replaceFragment(new TraineeTrainersFragment(), R.id.content_fragment);
     }
 
-    private void onSettingsClicked(){
-        FragmentNavigation.getInstance(getContext()).replaceFragment(new TraineeSettingsFragment(),R.id.content_fragment);
+    private void onSettingsClicked() {
+        FragmentNavigation.getInstance(getContext()).replaceFragment(new TraineeSettingsFragment(), R.id.content_fragment);
     }
 
 }

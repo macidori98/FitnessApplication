@@ -1,4 +1,4 @@
-package com.example.fitnessapplication.Model;
+package com.example.fitnessapplication.model;
 
 public class Trainer {
 
@@ -6,7 +6,7 @@ public class Trainer {
     private String trainer_username;
     private String id;
 
-    public Trainer(String id, String user_id,String username) {
+    public Trainer(String id, String user_id, String username) {
         this.trainer_name = user_id;
         this.trainer_username = username;
         this.id = id;

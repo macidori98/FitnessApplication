@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">FitnessApplication</string>
     <string name="login_username">Enter your username</string>
@@ -56,6 +57,4 @@
 
     <string name="user_not_found">User not Found</string>
     <string name="dark_mode">Dark mode</string>
-
-
 </resources>

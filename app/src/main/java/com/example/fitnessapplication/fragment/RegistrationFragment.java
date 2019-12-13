@@ -1,6 +1,5 @@
-package com.example.fitnessapplication.Fragment;
+package com.example.fitnessapplication.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,9 +17,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.fitnessapplication.MainActivity;
 import com.example.fitnessapplication.R;
-import com.example.fitnessapplication.Model.User;
-import com.example.fitnessapplication.Utils.Constant;
-import com.example.fitnessapplication.Utils.FragmentNavigation;
+import com.example.fitnessapplication.model.User;
+import com.example.fitnessapplication.utils.Constant;
+import com.example.fitnessapplication.utils.FragmentNavigation;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -46,11 +45,7 @@ public class RegistrationFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_registration, container, false);
-
-        mDatabase = FirebaseDatabase.getInstance();
-        mRef = mDatabase.getReference(Constant.USERS);
         initializeViewElements(view);
-
         return view;
     }
 
@@ -67,7 +62,7 @@ public class RegistrationFragment extends Fragment {
 
     }
 
-    private void login(){
+    private void login() {
         if (checkIfInsertedDatasAreCorrect()) {
             mRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -105,32 +100,31 @@ public class RegistrationFragment extends Fragment {
         }
     }
 
-
     //username should contain 6 characters
     //password should contain 6 characters
     //name should contain 6 characters
-    private boolean checkNameAndUsernameAndPasswordLength(String username, String password, String name){
+    private boolean checkNameAndUsernameAndPasswordLength(String username, String password, String name) {
         return username.length() >= 6 && password.length() >= 6 && name.length() >= 6;
     }
 
-    private boolean checkEnteredPasswordMatch(String password, String confirm_password){
+    private boolean checkEnteredPasswordMatch(String password, String confirm_password) {
         return password.equals(confirm_password);
     }
 
-    private boolean checkIfInsertedDatasAreCorrect(){
-        if (selectedUserType == null){
+    private boolean checkIfInsertedDatasAreCorrect() {
+        if (selectedUserType == null) {
             Toast.makeText(getContext(), R.string.reg_select_user_type, Toast.LENGTH_SHORT).show();
             return false;
         }
 
         boolean passwordsMatch = checkEnteredPasswordMatch(et_password.getText().toString(), et_confirm_password.getText().toString());
-        boolean usernamePasswordLength = checkNameAndUsernameAndPasswordLength(et_username.getText().toString(),et_password.getText().toString(), et_name.getText().toString());
-        if (!passwordsMatch){
+        boolean usernamePasswordLength = checkNameAndUsernameAndPasswordLength(et_username.getText().toString(), et_password.getText().toString(), et_name.getText().toString());
+        if (!passwordsMatch) {
             Toast.makeText(getContext(), R.string.reg_password_dont_match, Toast.LENGTH_SHORT).show();
             return false;
         }
 
-        if(!usernamePasswordLength){
+        if (!usernamePasswordLength) {
             Toast.makeText(getContext(), R.string.reg_characters_fail, Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -138,17 +132,18 @@ public class RegistrationFragment extends Fragment {
         return true;
     }
 
-    private void initializeViewElements(View view){
+    private void initializeViewElements(View view) {
+        mDatabase = FirebaseDatabase.getInstance();
+        mRef = mDatabase.getReference(Constant.USERS);
         et_name = view.findViewById(R.id.editText_registration_name);
         et_username = view.findViewById(R.id.editText_registration_username);
         et_password = view.findViewById(R.id.editText_registration_password);
         et_confirm_password = view.findViewById(R.id.editText_registration_confirm_password);
         btn_registration = view.findViewById(R.id.button_registration);
         rg_trainer_trainee = view.findViewById(R.id.radioGroup_registration_user_type);
-
         //Create radio buttons into radiogroup
         final List<String> userTypes = Arrays.asList(getResources().getStringArray(R.array.registration_user_types));
-        for (int i = 0; i < userTypes.size(); ++i){
+        for (int i = 0; i < userTypes.size(); ++i) {
             RadioButton rb = new RadioButton(getActivity());
             rb.setText(userTypes.get(i));
             rb.setId(i);
@@ -157,8 +152,8 @@ public class RegistrationFragment extends Fragment {
             rb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                    if (compoundButton.isChecked()){
-                        MainActivity ma =(MainActivity) getActivity();
+                    if (compoundButton.isChecked()) {
+                        MainActivity ma = (MainActivity) getActivity();
                         selectedUserType = compoundButton.getText().toString();
                     } else {
                         selectedUserType = "";

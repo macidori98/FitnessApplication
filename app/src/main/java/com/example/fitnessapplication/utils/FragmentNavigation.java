@@ -1,4 +1,4 @@
-package com.example.fitnessapplication.Utils;
+package com.example.fitnessapplication.utils;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,23 +9,29 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.fitnessapplication.Fragment.LoginFragment;
-import com.example.fitnessapplication.Fragment.RegistrationFragment;
-import com.example.fitnessapplication.Fragment.TraineeHomeFragment;
-import com.example.fitnessapplication.Fragment.TraineeMuscleGroupExercisesFragment;
 import com.example.fitnessapplication.MainActivity;
 import com.example.fitnessapplication.R;
+import com.example.fitnessapplication.fragment.LoginFragment;
+import com.example.fitnessapplication.fragment.RegistrationFragment;
+import com.example.fitnessapplication.fragment.TraineeHomeFragment;
+import com.example.fitnessapplication.fragment.TraineeMuscleGroupExercisesFragment;
+import com.example.fitnessapplication.fragment.TraineeMuscleGroupsFragment;
+import com.example.fitnessapplication.fragment.TraineeSettingsFragment;
+import com.example.fitnessapplication.fragment.TraineeTrainerMyContentFragment;
+import com.example.fitnessapplication.fragment.TraineeTrainersFragment;
+import com.example.fitnessapplication.fragment.TrainerMyContentFragment;
+import com.example.fitnessapplication.fragment.TrainerOptionsFragment;
 
-public class FragmentNavigation extends Fragment{
+public class FragmentNavigation extends Fragment {
     public final static String TAG = FragmentNavigation.class.getSimpleName();
 
     private static FragmentNavigation sInstance;
     private static FragmentManager mFragmentManager;
     private static FragmentTransaction mFragmentTransaction;
     private static Handler mHandler = new Handler();
-    private Activity act;
     private static int mMainActivityFragmentContainer;
     private static boolean mDoubleBackToExitPressedOnce = false;
+    private Activity act;
 
     public static FragmentNavigation getInstance(Context context) {
 
@@ -72,22 +78,52 @@ public class FragmentNavigation extends Fragment{
 
     public void onBackPressed(MainActivity activity) {
 
-        if( getCurrentFragment(mMainActivityFragmentContainer) instanceof LoginFragment) {
+        if (getCurrentFragment(mMainActivityFragmentContainer) instanceof LoginFragment) {
             doublePressExit(activity);
             return;
         }
 
-        if( getCurrentFragment(mMainActivityFragmentContainer) instanceof TraineeMuscleGroupExercisesFragment) {
+        if (getCurrentFragment(mMainActivityFragmentContainer) instanceof TraineeMuscleGroupExercisesFragment) {
             popBackstack();
             return;
         }
 
-        if( getCurrentFragment(mMainActivityFragmentContainer) instanceof RegistrationFragment) {
+        if (getCurrentFragment(mMainActivityFragmentContainer) instanceof RegistrationFragment) {
             popBackstack();
             return;
         }
 
-        if( getCurrentFragment(mMainActivityFragmentContainer) instanceof TraineeHomeFragment) {
+        if (getCurrentFragment(mMainActivityFragmentContainer) instanceof TraineeHomeFragment) {
+            popBackstack();
+            return;
+        }
+
+        if (getCurrentFragment(mMainActivityFragmentContainer) instanceof TraineeMuscleGroupsFragment) {
+            popBackstack();
+            return;
+        }
+
+        if (getCurrentFragment(mMainActivityFragmentContainer) instanceof TraineeSettingsFragment) {
+            popBackstack();
+            return;
+        }
+
+        if (getCurrentFragment(mMainActivityFragmentContainer) instanceof TraineeTrainerMyContentFragment) {
+            popBackstack();
+            return;
+        }
+
+        if (getCurrentFragment(mMainActivityFragmentContainer) instanceof TraineeTrainersFragment) {
+            popBackstack();
+            return;
+        }
+
+        if (getCurrentFragment(mMainActivityFragmentContainer) instanceof TrainerMyContentFragment) {
+            popBackstack();
+            return;
+        }
+
+        if (getCurrentFragment(mMainActivityFragmentContainer) instanceof TrainerOptionsFragment) {
             popBackstack();
             return;
         }

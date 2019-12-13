@@ -1,4 +1,4 @@
-package com.example.fitnessapplication.Fragment;
+package com.example.fitnessapplication.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -30,7 +30,7 @@ public class TrainerOptionsFragment extends Fragment {
         return view;
     }
 
-    private void initializeViewElements(View view){
+    private void initializeViewElements(View view) {
         btn_my_content = view.findViewById(R.id.button_option_trainer_my_content);
         btn_settings = view.findViewById(R.id.button_option_trainer_settings);
         btn_upload = view.findViewById(R.id.button_option_trainer_upload);

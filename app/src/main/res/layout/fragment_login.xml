@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,9 +8,9 @@
         android:id="@+id/textView_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="40sp"
         android:layout_marginTop="104dp"
         android:text="@string/login"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,8 +21,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="115dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="@string/login_username"
+        android:inputType="textPersonName"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,8 +35,8 @@
         android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="@string/login_password"
-        android:textAlignment="center"
         android:inputType="textPassword"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_login_username" />
@@ -57,9 +55,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
-        android:text="@string/login"
-        android:paddingEnd="40dp"
         android:paddingStart="40dp"
+        android:paddingEnd="40dp"
+        android:text="@string/login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,16 +67,14 @@
         android:id="@+id/textView_login_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/login_registration"
-        android:onClick="onRegisterClicked"
         android:clickable="true"
+        android:onClick="onRegisterClicked"
+        android:text="@string/login_registration"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_login"
         app:layout_constraintVertical_bias="0.27" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
