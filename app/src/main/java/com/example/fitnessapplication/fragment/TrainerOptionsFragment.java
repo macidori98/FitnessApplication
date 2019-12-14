@@ -50,11 +50,11 @@ public class TrainerOptionsFragment extends Fragment {
         btn_upload = view.findViewById(R.id.button_option_trainer_upload);
     }
 
-    private void onMyContentClicked(){
-        FragmentNavigation.getInstance(getContext()).replaceFragment(new TrainerMyContentFragment(),R.id.content_fragment);
+    private void onMyContentClicked() {
+        FragmentNavigation.getInstance(getContext()).replaceFragment(new TrainerMyContentFragment(), R.id.content_fragment);
     }
 
-    private void onUploadClicked(){
-        FragmentNavigation.getInstance(getContext()).replaceFragment(new TrainerUploadFragment(),R.id.content_fragment);
+    private void onUploadClicked() {
+        FragmentNavigation.getInstance(getContext()).replaceFragment(new TrainerUploadFragment(), R.id.content_fragment);
     }
 }

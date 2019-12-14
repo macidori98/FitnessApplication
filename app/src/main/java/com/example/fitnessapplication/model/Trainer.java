@@ -6,8 +6,8 @@ public class Trainer {
     private String trainer_username;
     private String id;
 
-    public Trainer(String id, String user_id, String username) {
-        this.trainer_name = user_id;
+    public Trainer(String id, String name, String username) {
+        this.trainer_name = name;
         this.trainer_username = username;
         this.id = id;
     }

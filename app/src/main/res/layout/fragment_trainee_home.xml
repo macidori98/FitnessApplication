@@ -12,6 +12,7 @@
         android:id="@+id/button_home_trainee_exercises"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorText"
         android:layout_marginTop="150dp"
         android:text="@string/trainee_option_exercises"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,6 +24,7 @@
         android:id="@+id/button_home_trainee_trainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorText"
         android:layout_marginTop="15dp"
         android:text="@string/trainee_option_trainer"
         app:layout_constraintEnd_toEndOf="@+id/button_home_trainee_exercises"
@@ -32,6 +34,7 @@
     <Button
         android:id="@+id/button_home_trainee_settings"
         android:layout_width="0dp"
+        android:textColor="@color/colorText"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:text="@string/trainee_option_settings"

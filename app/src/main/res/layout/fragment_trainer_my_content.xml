@@ -8,6 +8,7 @@
         android:id="@+id/textView_trainer_my_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorText"
         android:text="@string/trainer_option_my_content" />
 
     <androidx.recyclerview.widget.RecyclerView

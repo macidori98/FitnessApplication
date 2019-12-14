@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.fitnessapplication.R;
+import com.example.fitnessapplication.model.ExerciseVideo;
 import com.example.fitnessapplication.model.User;
 import com.example.fitnessapplication.utils.Constant;
 import com.example.fitnessapplication.utils.FragmentNavigation;
@@ -128,7 +129,7 @@ public class LoginFragment extends Fragment {
                             /*FirebaseDatabase p = FirebaseDatabase.getInstance();
                             DatabaseReference ref = p.getReference(Constant.EXERCISE_VIDEO);
                             String key = ref.push().getKey();
-                            ExerciseVideo v = new ExerciseVideo(key, "trainer_id", "https://firebasestorage.googleapis.com/v0/b/fitnessapplication-ee505.appspot.com/o/video%2FArms%2Fvideo-1575819762.mp4?alt=media&token=899445dd-e6cf-4399-b391-e7824b34aa65", "Maci", "Arms", "bla bla bla");
+                            ExerciseVideo v = new ExerciseVideo(key, "-Lw3dhsTGLr50kwoOXV9", "https://firebasestorage.googleapis.com/v0/b/fitnessapplication2.appspot.com/o/video-1576262209.mp4?alt=media&token=c9e0521d-6e34-4166-a690-967b8da344ca", "Maci", "Arms", "bla bla bla");
                             ref.child(key).setValue(v);*/
                             FragmentNavigation.getInstance(getContext()).replaceFragment(new TraineeHomeFragment(), R.id.content_fragment);
                         }

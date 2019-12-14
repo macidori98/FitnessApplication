@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/dp10"
@@ -10,8 +11,8 @@
 
     <VideoView
         android:id="@+id/videoView_recyclerview_trainee_muscle_group_exercise_video"
-        android:layout_width="300dp"
-        android:layout_height="400dp"
+        android:layout_width="400dp"
+        android:layout_height="150dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -19,9 +20,12 @@
     <TextView
         android:id="@+id/textView_recyclerview_trainee_muscle_group_exercise_video_title"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/sp20"
-        android:layout_marginTop="@dimen/dp5"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/colorText"
+        android:textSize="@dimen/sp20"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/videoView_recyclerview_trainee_muscle_group_exercise_video" />
 
@@ -29,17 +33,38 @@
         android:id="@+id/textView_recyclerview_trainee_muscle_group_exercise_video_trainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorText"
+        android:textSize="@dimen/sp20"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_recyclerview_trainee_muscle_group_exercise_video_title" />
 
     <ImageView
-        android:id="@+id/imageView__recyclerview_trainee_muscle_group_exercise_image"
-        android:layout_width="300dp"
-        android:layout_height="400dp"
+        android:id="@+id/imageView_recyclerview_trainee_muscle_group_exercise_image"
+        android:layout_width="400dp"
+        android:layout_height="150dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/videoView_recyclerview_trainee_muscle_group_exercise_video"
         app:srcCompat="@color/colorAccent" />
+
+    <ImageView
+        android:id="@+id/imageView_recyclerview_trainee_muscle_group_exercise_media_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/textView_recyclerview_trainee_muscle_group_exercise_video_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/videoView_recyclerview_trainee_muscle_group_exercise_video"
+        app:srcCompat="@android:drawable/ic_media_play" />
+
+    <ImageButton
+        android:id="@+id/button_recyclerview_trainee_muscle_group_exercise_media_play_pause"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/videoView_recyclerview_trainee_muscle_group_exercise_video"
+        app:layout_constraintStart_toStartOf="@+id/videoView_recyclerview_trainee_muscle_group_exercise_video" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
