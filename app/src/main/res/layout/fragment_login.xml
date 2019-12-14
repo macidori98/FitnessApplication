@@ -11,6 +11,7 @@
         android:layout_marginTop="104dp"
         android:text="@string/login"
         android:textSize="40sp"
+        android:textColor="@color/colorText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,6 +23,7 @@
         android:layout_marginTop="115dp"
         android:ems="10"
         android:hint="@string/login_username"
+        android:textColor="@color/colorText"
         android:inputType="textPersonName"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,6 +33,7 @@
     <EditText
         android:id="@+id/editText_login_password"
         android:layout_width="wrap_content"
+        android:textColor="@color/colorText"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:ems="10"
@@ -44,6 +47,7 @@
     <CheckBox
         android:id="@+id/checkBox_remember_me"
         android:layout_width="wrap_content"
+        android:textColor="@color/colorText"
         android:layout_height="wrap_content"
         android:text="@string/login_remember_me"
         app:layout_constraintBottom_toTopOf="@+id/button_login"
@@ -56,6 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="120dp"
         android:paddingStart="40dp"
+        android:textColor="@color/colorText"
         android:paddingEnd="40dp"
         android:text="@string/login"
         app:layout_constraintEnd_toEndOf="parent"
@@ -69,6 +74,7 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:onClick="onRegisterClicked"
+        android:textColor="@color/colorText"
         android:text="@string/login_registration"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
