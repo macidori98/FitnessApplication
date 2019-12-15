@@ -31,7 +31,6 @@ public class TrainerMyContentFragment extends Fragment {
 
     }
 
-
     private void initializeViewElements(View view) {
 
     }

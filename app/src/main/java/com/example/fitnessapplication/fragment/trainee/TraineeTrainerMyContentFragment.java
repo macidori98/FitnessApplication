@@ -48,13 +48,12 @@ public class TraineeTrainerMyContentFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
     }
 
     private void initializeElements(View view) {
         recyclerViewTraineeTrainerMyContent = view.findViewById(R.id.recyclerView_trainee_trainer_my_content);
         textViewSelectedTrainer = view.findViewById(R.id.textView_trainee_trainer_my_content_trainer_name);
-        textViewSelectedTrainer.setText(Constant.SELECTED_TRAINER.getTrainer_name());
+        textViewSelectedTrainer.setText(Constant.SELECTED_TRAINER.getTrainerName());
         mDatabase = FirebaseDatabase.getInstance();
         mRef = mDatabase.getReference(Constant.EXERCISE_VIDEO);
         videoList = new ArrayList<>();
@@ -68,19 +67,18 @@ public class TraineeTrainerMyContentFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    String sTrainerId = snapshot.child(Constant.TRAINER_ID).getValue().toString();
-                    if (sTrainerId.equals(Constant.SELECTED_TRAINER.getId())) {
-                        String sId = snapshot.child(Constant.ID).getValue().toString();
-                        String sDescription = snapshot.child(Constant.DESCRIPTION).getValue().toString();
-                        String sMuscleGroup = snapshot.child(Constant.MUSCLE_GROUP).getValue().toString();
-                        String sURL = snapshot.child(Constant.URL).getValue().toString();
-                        String sTitle = snapshot.child(Constant.TITLE).getValue().toString();
-                        ExerciseVideo exerciseVideo = new ExerciseVideo(sId, sTrainerId, sURL, sTitle, sMuscleGroup, sDescription);
+                    String sDBTrainerId = snapshot.child(Constant.TRAINER_ID).getValue().toString();
+                    if (sDBTrainerId.equals(Constant.SELECTED_TRAINER.getId())) {
+                        String sDBId = snapshot.child(Constant.ID).getValue().toString();
+                        String sDBDescription = snapshot.child(Constant.DESCRIPTION).getValue().toString();
+                        String sDBMuscleGroup = snapshot.child(Constant.MUSCLE_GROUP).getValue().toString();
+                        String sDBURL = snapshot.child(Constant.URL).getValue().toString();
+                        String sDBTitle = snapshot.child(Constant.TITLE).getValue().toString();
+                        ExerciseVideo exerciseVideo = new ExerciseVideo(sDBId, sDBTrainerId, sDBURL, sDBTitle, sDBMuscleGroup, sDBDescription);
                         videoList.add(exerciseVideo);
                     }
                 }
                 mAdapter = new TraineeTrainerMyContentAdapter(getContext(), videoList);
-
                 recyclerViewTraineeTrainerMyContent.setAdapter(mAdapter);
             }
 

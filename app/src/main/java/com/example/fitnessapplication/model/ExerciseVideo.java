@@ -2,18 +2,18 @@ package com.example.fitnessapplication.model;
 
 public class ExerciseVideo {
     private String id; //key
-    private String trainer_id;
+    private String trainerId;
     private String url;
     private String title;
-    private String muscle_group;
+    private String muscleGroup;
     private String description;
 
     public ExerciseVideo(String ID, String trainer_id, String url, String title, String muscle_group, String description) {
         this.id = ID;
-        this.trainer_id = trainer_id;
+        this.trainerId = trainer_id;
         this.url = url;
         this.title = title;
-        this.muscle_group = muscle_group;
+        this.muscleGroup = muscle_group;
         this.description = description;
     }
 
@@ -25,12 +25,12 @@ public class ExerciseVideo {
         this.id = id;
     }
 
-    public String getTrainer_id() {
-        return trainer_id;
+    public String getTrainerId() {
+        return trainerId;
     }
 
-    public void setTrainer_id(String trainer_id) {
-        this.trainer_id = trainer_id;
+    public void setTrainerId(String trainerId) {
+        this.trainerId = trainerId;
     }
 
     public String getUrl() {
@@ -49,12 +49,12 @@ public class ExerciseVideo {
         this.title = title;
     }
 
-    public String getMuscle_group() {
-        return muscle_group;
+    public String getMuscleGroup() {
+        return muscleGroup;
     }
 
-    public void setMuscle_group(String muscle_group) {
-        this.muscle_group = muscle_group;
+    public void setMuscleGroup(String muscleGroup) {
+        this.muscleGroup = muscleGroup;
     }
 
     public String getDescription() {

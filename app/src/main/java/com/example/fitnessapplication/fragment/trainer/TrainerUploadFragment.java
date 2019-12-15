@@ -1,6 +1,5 @@
 package com.example.fitnessapplication.fragment.trainer;
 
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +11,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.fitnessapplication.R;
 
-
 public class TrainerUploadFragment extends Fragment {
 
     public final static String TAG = TrainerUploadFragment.class.getSimpleName();
@@ -23,7 +21,6 @@ public class TrainerUploadFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_trainer_upload, container, false);
-
         initializeViewElements(view);
         return view;
     }
@@ -31,7 +28,6 @@ public class TrainerUploadFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
     }
 
     private void initializeViewElements(View view) {

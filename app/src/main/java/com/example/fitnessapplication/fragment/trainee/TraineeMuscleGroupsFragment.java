@@ -23,13 +23,13 @@ public class TraineeMuscleGroupsFragment extends Fragment {
     public final static String TAG = TraineeMuscleGroupsFragment.class.getSimpleName();
 
     private View view;
-    private LinearLayout linearLayout_trainee_muscle_group;
+    private LinearLayout linearLayoutTraineeMuscleGroup;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_trainee_muscle_group, container, false);
-        linearLayout_trainee_muscle_group = view.findViewById(R.id.linearLayout_trainee_muscle_groups);
+        linearLayoutTraineeMuscleGroup = view.findViewById(R.id.linearLayout_trainee_muscle_groups);
         return view;
     }
 
@@ -56,7 +56,7 @@ public class TraineeMuscleGroupsFragment extends Fragment {
                     //passing somehow which muscle group should be shown
                 }
             });
-            linearLayout_trainee_muscle_group.addView(btn);
+            linearLayoutTraineeMuscleGroup.addView(btn);
         }
     }
 }

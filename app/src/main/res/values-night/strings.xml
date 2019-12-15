@@ -34,7 +34,6 @@
     <string name="trainee_muscle_group_back">Back</string>
     <string name="trainee_muscle_group_shoulders">Shoulders</string>
 
-
     <string-array name="registration_user_types">
         <item>Trainer</item>
         <item>Trainee</item>
@@ -51,10 +50,6 @@
 
     <string name="back_button_press">Please click BACK again to exit!</string>
 
-
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-
     <string name="user_not_found">User not Found</string>
     <string name="dark_mode">Dark mode</string>
     <string name="change_password">Change password</string>
@@ -67,9 +62,11 @@
     <string name="change_password_dialog_title">Change password</string>
     <string name="cancel">Cancel</string>
     <string name="confirm">Confirm</string>
+    <string name="cancel_change_name">Name was not changed</string>
     <string name="cancel_change_password">Password was not changed</string>
     <string name="change_name_successful">Your name has been changed</string>
     <string name="change_password_successful">Your password has been changed</string>
     <string name="old_new_password_match">Enter a new password</string>
+    <string name="new_confirm_new_passwords_dont_match">The passwords do not match</string>
 
 </resources>
