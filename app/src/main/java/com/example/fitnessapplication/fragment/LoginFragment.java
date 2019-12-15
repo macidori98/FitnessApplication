@@ -16,7 +16,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.fitnessapplication.R;
-import com.example.fitnessapplication.model.ExerciseVideo;
+import com.example.fitnessapplication.fragment.trainee.TraineeHomeFragment;
+import com.example.fitnessapplication.fragment.trainer.TrainerOptionsFragment;
 import com.example.fitnessapplication.model.User;
 import com.example.fitnessapplication.utils.Constant;
 import com.example.fitnessapplication.utils.FragmentNavigation;

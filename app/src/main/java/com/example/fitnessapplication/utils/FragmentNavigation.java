@@ -13,14 +13,14 @@ import com.example.fitnessapplication.MainActivity;
 import com.example.fitnessapplication.R;
 import com.example.fitnessapplication.fragment.LoginFragment;
 import com.example.fitnessapplication.fragment.RegistrationFragment;
-import com.example.fitnessapplication.fragment.TraineeHomeFragment;
-import com.example.fitnessapplication.fragment.TraineeMuscleGroupExercisesFragment;
-import com.example.fitnessapplication.fragment.TraineeMuscleGroupsFragment;
-import com.example.fitnessapplication.fragment.TraineeSettingsFragment;
-import com.example.fitnessapplication.fragment.TraineeTrainerMyContentFragment;
-import com.example.fitnessapplication.fragment.TraineeTrainersFragment;
-import com.example.fitnessapplication.fragment.TrainerMyContentFragment;
-import com.example.fitnessapplication.fragment.TrainerOptionsFragment;
+import com.example.fitnessapplication.fragment.trainee.TraineeHomeFragment;
+import com.example.fitnessapplication.fragment.trainee.TraineeMuscleGroupExercisesFragment;
+import com.example.fitnessapplication.fragment.trainee.TraineeMuscleGroupsFragment;
+import com.example.fitnessapplication.fragment.trainee.TraineeSettingsFragment;
+import com.example.fitnessapplication.fragment.trainee.TraineeTrainerMyContentFragment;
+import com.example.fitnessapplication.fragment.trainee.TraineeTrainersFragment;
+import com.example.fitnessapplication.fragment.trainer.TrainerMyContentFragment;
+import com.example.fitnessapplication.fragment.trainer.TrainerOptionsFragment;
 
 public class FragmentNavigation extends Fragment {
     public final static String TAG = FragmentNavigation.class.getSimpleName();

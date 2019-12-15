@@ -1,4 +1,4 @@
-package com.example.fitnessapplication.fragment;
+package com.example.fitnessapplication.fragment.trainee;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
