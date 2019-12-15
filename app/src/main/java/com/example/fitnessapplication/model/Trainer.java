@@ -2,22 +2,22 @@ package com.example.fitnessapplication.model;
 
 public class Trainer {
 
-    private String trainer_name;
-    private String trainer_username;
+    private String trainerName;
+    private String trainerUsername;
     private String id;
 
     public Trainer(String id, String name, String username) {
-        this.trainer_name = name;
-        this.trainer_username = username;
+        this.trainerName = name;
+        this.trainerUsername = username;
         this.id = id;
     }
 
-    public String getTrainer_name() {
-        return trainer_name;
+    public String getTrainerName() {
+        return trainerName;
     }
 
-    public String getTrainer_username() {
-        return trainer_username;
+    public String getTrainerUsername() {
+        return trainerUsername;
     }
 
     public String getId() {

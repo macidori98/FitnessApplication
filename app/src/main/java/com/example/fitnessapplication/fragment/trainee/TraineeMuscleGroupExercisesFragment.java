@@ -30,8 +30,8 @@ public class TraineeMuscleGroupExercisesFragment extends Fragment {
     public static final String TAG = TraineeMuscleGroupExercisesFragment.class.getSimpleName();
 
     private View view;
-    private TextView tv_title;
-    private RecyclerView recyclerView_trainee_muscle_group_exercise;
+    private TextView tvTitle;
+    private RecyclerView recyclerViewTraineeMuscleGroupExercise;
     private TraineeMuscleGroupExercisesAdapter mAdapter;
     private List<ExerciseVideo> videoList;
     private FirebaseDatabase mDatabase;
@@ -45,10 +45,10 @@ public class TraineeMuscleGroupExercisesFragment extends Fragment {
         mDatabase = FirebaseDatabase.getInstance();
         mRef = mDatabase.getReference(Constant.EXERCISE_VIDEO);
         getData();
-        tv_title = view.findViewById(R.id.textView_title);
-        tv_title.setText(Constant.SELECTED_MUSCLE_GROUP);
-        recyclerView_trainee_muscle_group_exercise = view.findViewById(R.id.recyclerView_trainee_muscle_group_exercises);
-        recyclerView_trainee_muscle_group_exercise.setLayoutManager(new LinearLayoutManager(getContext()));
+        tvTitle = view.findViewById(R.id.textView_title);
+        tvTitle.setText(Constant.SELECTED_MUSCLE_GROUP);
+        recyclerViewTraineeMuscleGroupExercise = view.findViewById(R.id.recyclerView_trainee_muscle_group_exercises);
+        recyclerViewTraineeMuscleGroupExercise.setLayoutManager(new LinearLayoutManager(getContext()));
         return view;
     }
 
@@ -60,17 +60,17 @@ public class TraineeMuscleGroupExercisesFragment extends Fragment {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String snapshot_muscle_group = snapshot.child(Constant.MUSCLE_GROUP).getValue().toString().toLowerCase();
                     if (snapshot_muscle_group.equals(muscle_group)) {
-                        String id = snapshot.child(Constant.ID).getValue().toString();
-                        String trainer_id = snapshot.child(Constant.TRAINER_ID).getValue().toString();
-                        String url = snapshot.child(Constant.URL).getValue().toString();
-                        String title = snapshot.child(Constant.TITLE).getValue().toString();
-                        String description = snapshot.child(Constant.DESCRIPTION).getValue().toString();
-                        ExerciseVideo exerciseVideo = new ExerciseVideo(id, trainer_id, url, title, muscle_group, description);
+                        String sDBId = snapshot.child(Constant.ID).getValue().toString();
+                        String sDBTrainerId = snapshot.child(Constant.TRAINER_ID).getValue().toString();
+                        String sDBUrl = snapshot.child(Constant.URL).getValue().toString();
+                        String sDBTitle = snapshot.child(Constant.TITLE).getValue().toString();
+                        String sDBDescription = snapshot.child(Constant.DESCRIPTION).getValue().toString();
+                        ExerciseVideo exerciseVideo = new ExerciseVideo(sDBId, sDBTrainerId, sDBUrl, sDBTitle, muscle_group, sDBDescription);
                         videoList.add(exerciseVideo);
                     }
                 }
                 mAdapter = new TraineeMuscleGroupExercisesAdapter(videoList, getContext());
-                recyclerView_trainee_muscle_group_exercise.setAdapter(mAdapter);
+                recyclerViewTraineeMuscleGroupExercise.setAdapter(mAdapter);
             }
 
             @Override

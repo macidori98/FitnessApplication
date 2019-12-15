@@ -30,8 +30,8 @@ public class TraineeHomeFragment extends Fragment {
     public final static String TAG = TraineeHomeFragment.class.getSimpleName();
 
     private View view;
-    private LinearLayout linearLayout_user_home;
-    private Button btn_exercises, btn_trainers, btn_trainee_settings;
+    private LinearLayout linearLayoutUserHome;
+    private Button btnExercises, btnTrainers, btnTraineeSettings;
     private List<Trainer> trainerList;
     private DatabaseReference mRef;
     private FirebaseDatabase mDatabase;
@@ -48,55 +48,42 @@ public class TraineeHomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        btn_exercises.setOnClickListener(new View.OnClickListener() {
+        btnExercises.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onExercisesClicked();
+                FragmentNavigation.getInstance(getContext()).replaceFragment(new TraineeMuscleGroupsFragment(), R.id.content_fragment);
             }
         });
-
-        btn_trainers.setOnClickListener(new View.OnClickListener() {
+        btnTrainers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onTrainersClicked();
+                FragmentNavigation.getInstance(getContext()).replaceFragment(new TraineeTrainersFragment(), R.id.content_fragment);
             }
         });
-        btn_trainee_settings.setOnClickListener(new View.OnClickListener() {
+        btnTraineeSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onSettingsClicked();
+                FragmentNavigation.getInstance(getContext()).replaceFragment(new TraineeSettingsFragment(), R.id.content_fragment);
             }
         });
     }
 
     private void initializeViewElements(View view) {
-        btn_exercises = view.findViewById(R.id.button_home_trainee_exercises);
-        btn_trainers = view.findViewById(R.id.button_home_trainee_trainer);
-        btn_trainee_settings = view.findViewById(R.id.button_home_trainee_settings);
+        btnExercises = view.findViewById(R.id.button_home_trainee_exercises);
+        btnTrainers = view.findViewById(R.id.button_home_trainee_trainer);
+        btnTraineeSettings = view.findViewById(R.id.button_home_trainee_settings);
         trainerList = new ArrayList<>();
         mDatabase = FirebaseDatabase.getInstance();
         mRef = mDatabase.getReference(Constant.USERS);
     }
 
-    private void onExercisesClicked() {
-        FragmentNavigation.getInstance(getContext()).replaceFragment(new TraineeMuscleGroupsFragment(), R.id.content_fragment);
-    }
-
-    private void onTrainersClicked() {
-        FragmentNavigation.getInstance(getContext()).replaceFragment(new TraineeTrainersFragment(), R.id.content_fragment);
-    }
-
-    private void onSettingsClicked() {
-        FragmentNavigation.getInstance(getContext()).replaceFragment(new TraineeSettingsFragment(), R.id.content_fragment);
-    }
-
-    private void getTrainers(){
+    private void getTrainers() {
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     boolean bTrainer = Boolean.valueOf(snapshot.child(Constant.TRAINER).getValue().toString());
-                    if(bTrainer){
+                    if (bTrainer) {
                         String sDBId = snapshot.child(Constant.ID).getValue().toString();
                         String sDBName = snapshot.child(Constant.NAME).getValue().toString();
                         String sDBUsername = snapshot.child(Constant.USERNAME).getValue().toString();

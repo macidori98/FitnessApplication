@@ -59,11 +59,11 @@ public class TraineeTrainersFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot item : dataSnapshot.getChildren()) {
                     if (Boolean.valueOf(item.child(Constant.TRAINER).getValue().toString())) {
-                        String dbUsername = item.child(Constant.USERNAME).getValue().toString();
-                        String dbName = item.child(Constant.NAME).getValue().toString();
-                        String id = item.child(Constant.ID).getValue().toString();
-                        Trainer dbTrainer = new Trainer(id, dbName, dbUsername);
-                        trainerList.add(dbTrainer);
+                        String sDBUsername = item.child(Constant.USERNAME).getValue().toString();
+                        String sDBName = item.child(Constant.NAME).getValue().toString();
+                        String sDBId = item.child(Constant.ID).getValue().toString();
+                        Trainer sDBTrainer = new Trainer(sDBId, sDBName, sDBUsername);
+                        trainerList.add(sDBTrainer);
                     }
                 }
                 //create adapter with the previously aquired list

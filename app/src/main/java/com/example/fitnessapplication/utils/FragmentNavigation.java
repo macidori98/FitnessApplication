@@ -19,8 +19,8 @@ import com.example.fitnessapplication.fragment.trainee.TraineeMuscleGroupsFragme
 import com.example.fitnessapplication.fragment.trainee.TraineeSettingsFragment;
 import com.example.fitnessapplication.fragment.trainee.TraineeTrainerMyContentFragment;
 import com.example.fitnessapplication.fragment.trainee.TraineeTrainersFragment;
-import com.example.fitnessapplication.fragment.trainer.TrainerMyContentFragment;
 import com.example.fitnessapplication.fragment.trainer.TrainerHomeFragment;
+import com.example.fitnessapplication.fragment.trainer.TrainerMyContentFragment;
 
 public class FragmentNavigation extends Fragment {
     public final static String TAG = FragmentNavigation.class.getSimpleName();

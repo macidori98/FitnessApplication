@@ -24,7 +24,8 @@ public class ChangeNameDialog extends AppCompatDialogFragment {
     private DatabaseReference mRef;
     private EditText etNewName;
 
-    public ChangeNameDialog(){}
+    public ChangeNameDialog() {
+    }
 
     @NonNull
     @Override
@@ -37,7 +38,7 @@ public class ChangeNameDialog extends AppCompatDialogFragment {
         return builder.create();
     }
 
-    private void changeName(AlertDialog.Builder builder, View view){
+    private void changeName(AlertDialog.Builder builder, View view) {
         builder.setView(view).setTitle(R.string.change_name_dialog_title)
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
@@ -50,7 +51,7 @@ public class ChangeNameDialog extends AppCompatDialogFragment {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         mDatabase = FirebaseDatabase.getInstance();
                         mRef = mDatabase.getReference(Constant.USERS);
-                        if (isNameLengthOk(etNewName.getText().toString())){
+                        if (isNameLengthOk(etNewName.getText().toString())) {
                             User user = new User(Constant.CURRENT_USER.getId(), etNewName.getText().toString(),
                                     Constant.CURRENT_USER.getUsername(), Constant.CURRENT_USER.getPassword(),
                                     Constant.CURRENT_USER.isTrainer(), Constant.CURRENT_USER.isTrainee());
@@ -64,7 +65,7 @@ public class ChangeNameDialog extends AppCompatDialogFragment {
 
     }
 
-    private boolean isNameLengthOk(String name){
+    private boolean isNameLengthOk(String name) {
         return name.length() >= 6 && name.length() <= 20;
     }
 }

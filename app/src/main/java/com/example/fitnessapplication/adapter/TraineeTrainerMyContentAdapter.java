@@ -42,81 +42,81 @@ public class TraineeTrainerMyContentAdapter extends RecyclerView.Adapter<Trainee
 
     @Override
     public void onBindViewHolder(@NonNull final TraineeTrainerMyContentAdapter.MyViewHolder holder, int position) {
-        holder.vv_trainer_video.setVideoURI(Uri.parse(videoList.get(position).getUrl()));
-        holder.tv_trainer_video_title.setText(videoList.get(position).getTitle());
-        holder.img_btn_play_pause.setImageResource(android.R.drawable.ic_media_play);
-        holder.tv_trainer_video_description.setText(videoList.get(position).getDescription());
-        holder.tv_trainer_video_muscle_group.setText(videoList.get(position).getMuscle_group());
-        holder.vv_trainer_video.setOnClickListener(new View.OnClickListener() {
+        holder.vvTrainerVideo.setVideoURI(Uri.parse(videoList.get(position).getUrl()));
+        holder.tvTrainerVideoTitle.setText(videoList.get(position).getTitle());
+        holder.imgBtnPlayPause.setImageResource(android.R.drawable.ic_media_play);
+        holder.tvTrainerVideoDescription.setText(videoList.get(position).getDescription());
+        holder.tvTrainerVideoMuscleGroup.setText(videoList.get(position).getMuscleGroup());
+        holder.vvTrainerVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (holder.vv_trainer_video.isPlaying()) {
-                    holder.vv_trainer_video.pause();
+                if (holder.vvTrainerVideo.isPlaying()) {
+                    holder.vvTrainerVideo.pause();
                     Constant.VIDEO_STATUS = "pause";
-                    holder.img_btn_play_pause.setImageResource(android.R.drawable.ic_media_play);
-                    Constant.VIDEO_POSITION = holder.vv_trainer_video.getCurrentPosition();
-                    holder.iv_start_icon.setVisibility(View.VISIBLE);
+                    holder.imgBtnPlayPause.setImageResource(android.R.drawable.ic_media_play);
+                    Constant.VIDEO_POSITION = holder.vvTrainerVideo.getCurrentPosition();
+                    holder.ivStartIcon.setVisibility(View.VISIBLE);
                     Toast.makeText(context, "pause", Toast.LENGTH_SHORT).show();
                 } else {
                     if (Constant.VIDEO_STATUS.equals("pause")) {
-                        holder.img_btn_play_pause.setImageResource(android.R.drawable.ic_media_pause);
+                        holder.imgBtnPlayPause.setImageResource(android.R.drawable.ic_media_pause);
                         Constant.VIDEO_STATUS = "resume";
-                        holder.iv_start_icon.setVisibility(View.INVISIBLE);
-                        holder.vv_trainer_video.seekTo(Constant.VIDEO_POSITION);
-                        holder.vv_trainer_video.start();
+                        holder.ivStartIcon.setVisibility(View.INVISIBLE);
+                        holder.vvTrainerVideo.seekTo(Constant.VIDEO_POSITION);
+                        holder.vvTrainerVideo.start();
                         Toast.makeText(context, "resume", Toast.LENGTH_SHORT).show();
                     }
 
                     if (Constant.VIDEO_STATUS.equals("")) {
-                        holder.iv_trainer_image.setVisibility(View.INVISIBLE);
-                        holder.iv_start_icon.setVisibility(View.INVISIBLE);
-                        holder.img_btn_play_pause.setImageResource(android.R.drawable.ic_media_pause);
-                        holder.vv_trainer_video.seekTo(1);
-                        holder.vv_trainer_video.start();
+                        holder.ivTrainerImage.setVisibility(View.INVISIBLE);
+                        holder.ivStartIcon.setVisibility(View.INVISIBLE);
+                        holder.imgBtnPlayPause.setImageResource(android.R.drawable.ic_media_pause);
+                        holder.vvTrainerVideo.seekTo(1);
+                        holder.vvTrainerVideo.start();
                         Toast.makeText(context, "start", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
         });
-        holder.img_btn_play_pause.setOnClickListener(new View.OnClickListener() {
+        holder.imgBtnPlayPause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (holder.vv_trainer_video.isPlaying()) {
-                    holder.vv_trainer_video.pause();
+                if (holder.vvTrainerVideo.isPlaying()) {
+                    holder.vvTrainerVideo.pause();
                     Constant.VIDEO_STATUS = "pause";
-                    holder.img_btn_play_pause.setImageResource(android.R.drawable.ic_media_play);
-                    Constant.VIDEO_POSITION = holder.vv_trainer_video.getCurrentPosition();
-                    holder.iv_start_icon.setVisibility(View.VISIBLE);
-                    Toast.makeText(context, "pause", Toast.LENGTH_SHORT).show();
+                    holder.imgBtnPlayPause.setImageResource(android.R.drawable.ic_media_play);
+                    Constant.VIDEO_POSITION = holder.vvTrainerVideo.getCurrentPosition();
+                    holder.ivStartIcon.setVisibility(View.VISIBLE);
+                    //Toast.makeText(context, "pause", Toast.LENGTH_SHORT).show();
                 } else {
                     if (Constant.VIDEO_STATUS.equals("pause")) {
-                        holder.img_btn_play_pause.setImageResource(android.R.drawable.ic_media_pause);
+                        holder.imgBtnPlayPause.setImageResource(android.R.drawable.ic_media_pause);
                         Constant.VIDEO_STATUS = "resume";
-                        holder.iv_start_icon.setVisibility(View.INVISIBLE);
-                        holder.vv_trainer_video.seekTo(Constant.VIDEO_POSITION);
-                        holder.vv_trainer_video.start();
-                        Toast.makeText(context, "resume", Toast.LENGTH_SHORT).show();
+                        holder.ivStartIcon.setVisibility(View.INVISIBLE);
+                        holder.vvTrainerVideo.seekTo(Constant.VIDEO_POSITION);
+                        holder.vvTrainerVideo.start();
+                        //Toast.makeText(context, "resume", Toast.LENGTH_SHORT).show();
                     }
 
                     if (Constant.VIDEO_STATUS.equals("")) {
-                        holder.iv_trainer_image.setVisibility(View.INVISIBLE);
-                        holder.iv_start_icon.setVisibility(View.INVISIBLE);
-                        holder.img_btn_play_pause.setImageResource(android.R.drawable.ic_media_pause);
-                        holder.vv_trainer_video.seekTo(1);
-                        holder.vv_trainer_video.start();
-                        Toast.makeText(context, "start", Toast.LENGTH_SHORT).show();
+                        holder.ivTrainerImage.setVisibility(View.INVISIBLE);
+                        holder.ivStartIcon.setVisibility(View.INVISIBLE);
+                        holder.imgBtnPlayPause.setImageResource(android.R.drawable.ic_media_pause);
+                        holder.vvTrainerVideo.seekTo(1);
+                        holder.vvTrainerVideo.start();
+                        //Toast.makeText(context, "start", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
         });
-        holder.vv_trainer_video.setOnLongClickListener(new View.OnLongClickListener() {
+        holder.vvTrainerVideo.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
                 Toast.makeText(context, "long", Toast.LENGTH_SHORT).show();
                 return false;
             }
         });
-        loadImage(Glide.with(context), videoList.get(position).getUrl(), holder.iv_trainer_image);
+        loadImage(Glide.with(context), videoList.get(position).getUrl(), holder.ivTrainerImage);
     }
 
     private void loadImage(RequestManager glide, String url, ImageView view) {
@@ -131,21 +131,21 @@ public class TraineeTrainerMyContentAdapter extends RecyclerView.Adapter<Trainee
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        private VideoView vv_trainer_video;
-        private TextView tv_trainer_video_title, tv_trainer_video_muscle_group,
-                tv_trainer_video_description;
-        private ImageView iv_trainer_image, iv_start_icon;
-        private ImageButton img_btn_play_pause;
+        private VideoView vvTrainerVideo;
+        private TextView tvTrainerVideoTitle, tvTrainerVideoMuscleGroup,
+                tvTrainerVideoDescription;
+        private ImageView ivTrainerImage, ivStartIcon;
+        private ImageButton imgBtnPlayPause;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            img_btn_play_pause = itemView.findViewById(R.id.imageButton_recyclerview_trainee_trainer_my_content_media_play_pause);
-            iv_start_icon = itemView.findViewById(R.id.imageView_recyclerview_trainee_trainer_my_content_media_play);
-            iv_trainer_image = itemView.findViewById(R.id.imageView_recyclerview_trainee_trainer_my_content_image);
-            vv_trainer_video = itemView.findViewById(R.id.videoView_recyclerview_trainee_trainer_my_content_video);
-            tv_trainer_video_muscle_group = itemView.findViewById(R.id.textView_recyclerview_trainee_trainer_my_content_muscle_group);
-            tv_trainer_video_title = itemView.findViewById(R.id.textView_recyclerview_trainee_trainer_my_content_title);
-            tv_trainer_video_description = itemView.findViewById(R.id.textView_recyclerview_trainee_trainer_my_content_description);
+            imgBtnPlayPause = itemView.findViewById(R.id.imageButton_recyclerview_trainee_trainer_my_content_media_play_pause);
+            ivStartIcon = itemView.findViewById(R.id.imageView_recyclerview_trainee_trainer_my_content_media_play);
+            ivTrainerImage = itemView.findViewById(R.id.imageView_recyclerview_trainee_trainer_my_content_image);
+            vvTrainerVideo = itemView.findViewById(R.id.videoView_recyclerview_trainee_trainer_my_content_video);
+            tvTrainerVideoMuscleGroup = itemView.findViewById(R.id.textView_recyclerview_trainee_trainer_my_content_muscle_group);
+            tvTrainerVideoTitle = itemView.findViewById(R.id.textView_recyclerview_trainee_trainer_my_content_title);
+            tvTrainerVideoDescription = itemView.findViewById(R.id.textView_recyclerview_trainee_trainer_my_content_description);
         }
     }
 }

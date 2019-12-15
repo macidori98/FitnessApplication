@@ -45,17 +45,17 @@ public class TrainerSettingsFragment extends Fragment {
         });
     }
 
-    private void changePassword(){
+    private void changePassword() {
         ChangePasswordDialog changePasswordDialog = new ChangePasswordDialog();
         changePasswordDialog.show(getActivity().getSupportFragmentManager(), "Change password");
     }
 
-    private void changeName(){
+    private void changeName() {
         ChangeNameDialog changeNameDialog = new ChangeNameDialog();
-        changeNameDialog.show(getActivity().getSupportFragmentManager(),"Change name");
+        changeNameDialog.show(getActivity().getSupportFragmentManager(), "Change name");
     }
 
-    private void initializeElements(View view){
+    private void initializeElements(View view) {
         btnChangeName = view.findViewById(R.id.button_trainer_settings_change_name);
         btnChangePassword = view.findViewById(R.id.button_trainer_settings_change_password);
     }

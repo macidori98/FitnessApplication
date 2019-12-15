@@ -24,7 +24,8 @@ public class ChangePasswordDialog extends AppCompatDialogFragment {
     private DatabaseReference mRef;
     private EditText etNewPassword, etOldPassword, etConfirmNewPassword;
 
-    public ChangePasswordDialog(){}
+    public ChangePasswordDialog() {
+    }
 
     @NonNull
     @Override
@@ -39,7 +40,7 @@ public class ChangePasswordDialog extends AppCompatDialogFragment {
         return builder.create();
     }
 
-    private void changePassword(AlertDialog.Builder builder, View view){
+    private void changePassword(AlertDialog.Builder builder, View view) {
         builder.setView(view).setTitle(R.string.change_password_dialog_title)
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
@@ -55,9 +56,9 @@ public class ChangePasswordDialog extends AppCompatDialogFragment {
                         String sOldPassword = etOldPassword.getText().toString();
                         String sNewPassword = etNewPassword.getText().toString();
                         String sConfirmNewPassword = etConfirmNewPassword.getText().toString();
-                        if (!arePasswordsMatch(sOldPassword, sNewPassword) && arePasswordsMatch(Constant.CURRENT_USER.getPassword(), sOldPassword)){
-                            if(arePasswordsMatch(sNewPassword, sConfirmNewPassword)){
-                                if (isPasswordLengthOk(sNewPassword)){
+                        if (!arePasswordsMatch(sOldPassword, sNewPassword) && arePasswordsMatch(Constant.CURRENT_USER.getPassword(), sOldPassword)) {
+                            if (arePasswordsMatch(sNewPassword, sConfirmNewPassword)) {
+                                if (isPasswordLengthOk(sNewPassword)) {
                                     User user = new User(Constant.CURRENT_USER.getId(), Constant.CURRENT_USER.getName(),
                                             Constant.CURRENT_USER.getUsername(), sNewPassword,
                                             Constant.CURRENT_USER.isTrainer(), Constant.CURRENT_USER.isTrainee());
@@ -76,11 +77,11 @@ public class ChangePasswordDialog extends AppCompatDialogFragment {
                 });
     }
 
-    private boolean isPasswordLengthOk(String password){
+    private boolean isPasswordLengthOk(String password) {
         return password.length() >= 6 && password.length() <= 20;
     }
-    
-    private boolean arePasswordsMatch(String np, String cnp){
+
+    private boolean arePasswordsMatch(String np, String cnp) {
         return np.equals(cnp);
     }
 }

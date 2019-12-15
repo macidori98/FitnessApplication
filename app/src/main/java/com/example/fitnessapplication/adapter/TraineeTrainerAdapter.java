@@ -28,8 +28,8 @@ public class TraineeTrainerAdapter extends RecyclerView.Adapter<TraineeTrainerAd
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.tv_trainer_name.setText(trainerList.get(position).getTrainer_name());
-        holder.tv_trainer_username.setText(trainerList.get(position).getTrainer_username());
+        holder.tvTrainerName.setText(trainerList.get(position).getTrainerName());
+        holder.tvTrainerUsername.setText(trainerList.get(position).getTrainerUsername());
     }
 
     @NonNull
@@ -50,12 +50,12 @@ public class TraineeTrainerAdapter extends RecyclerView.Adapter<TraineeTrainerAd
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        private TextView tv_trainer_name, tv_trainer_username;
+        private TextView tvTrainerName, tvTrainerUsername;
 
         public MyViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
-            tv_trainer_name = itemView.findViewById(R.id.textView_recyclerview_trainee_trainers_trainer_name);
-            tv_trainer_username = itemView.findViewById(R.id.textView_recyclerview_trainee_trainers_trainer_username);
+            tvTrainerName = itemView.findViewById(R.id.textView_recyclerview_trainee_trainers_trainer_name);
+            tvTrainerUsername = itemView.findViewById(R.id.textView_recyclerview_trainee_trainers_trainer_username);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View itemView) {
