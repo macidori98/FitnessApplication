@@ -1,4 +1,4 @@
-package com.example.fitnessapplication.fragment;
+package com.example.fitnessapplication.fragment.trainee;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -46,6 +46,7 @@ public class TraineeMuscleGroupsFragment extends Fragment {
             final int ii = i;
             Button btn = new Button(getContext());
             btn.setText(buttonString.get(i));
+            btn.setTextColor(getResources().getColor(R.color.colorText));
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

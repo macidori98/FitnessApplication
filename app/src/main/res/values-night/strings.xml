@@ -17,7 +17,7 @@
     <string name="reg_user_created">User created</string>
     <string name="reg_select_user_type">Select an user type</string>
     <string name="reg_password_dont_match">Inserted passwords do not match</string>
-    <string name="reg_characters_fail">You have to insert at least 6 characters</string>
+    <string name="reg_characters_fail">You have to enter between 6 and 20 characters</string>
 
     <string name="trainee_option_exercises">Exercises</string>
     <string name="trainee_option_trainer">Trainers</string>
@@ -57,4 +57,19 @@
 
     <string name="user_not_found">User not Found</string>
     <string name="dark_mode">Dark mode</string>
+    <string name="change_password">Change password</string>
+    <string name="change_name">Change name</string>
+    <string name="enter_new_name">Enter your new name</string>
+    <string name="old_password">Enter old password</string>
+    <string name="new_password">Enter new password</string>
+    <string name="confirm_new_password">Confirm new password</string>
+    <string name="change_name_dialog_title">Change name</string>
+    <string name="change_password_dialog_title">Change password</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel_change_password">Password was not changed</string>
+    <string name="change_name_successful">Your name has been changed</string>
+    <string name="change_password_successful">Your password has been changed</string>
+    <string name="old_new_password_match">Enter a new password</string>
+
 </resources>

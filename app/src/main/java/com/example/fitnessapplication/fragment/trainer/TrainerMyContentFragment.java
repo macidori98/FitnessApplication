@@ -1,4 +1,4 @@
-package com.example.fitnessapplication.fragment;
+package com.example.fitnessapplication.fragment.trainer;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.fitnessapplication.R;
+import com.example.fitnessapplication.fragment.trainee.TraineeTrainersFragment;
 
 public class TrainerMyContentFragment extends Fragment {
 

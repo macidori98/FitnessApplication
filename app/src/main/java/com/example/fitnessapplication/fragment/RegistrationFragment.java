@@ -104,7 +104,8 @@ public class RegistrationFragment extends Fragment {
     //password should contain 6 characters
     //name should contain 6 characters
     private boolean checkNameAndUsernameAndPasswordLength(String username, String password, String name) {
-        return username.length() >= 6 && password.length() >= 6 && name.length() >= 6;
+        return username.length() >= 6 && password.length() >= 6 && name.length() >= 6
+                && username.length() <= 20 && password.length() <= 20 && name.length() <= 20;
     }
 
     private boolean checkEnteredPasswordMatch(String password, String confirm_password) {
