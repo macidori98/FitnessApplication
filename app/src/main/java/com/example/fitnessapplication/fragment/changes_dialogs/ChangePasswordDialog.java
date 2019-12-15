@@ -62,7 +62,7 @@ public class ChangePasswordDialog extends AppCompatDialogFragment {
                                             Constant.CURRENT_USER.getUsername(), sNewPassword,
                                             Constant.CURRENT_USER.isTrainer(), Constant.CURRENT_USER.isTrainee());
                                     mRef.child(Constant.CURRENT_USER.getId()).setValue(user);
-                                    Toast.makeText(getContext(), R.string.change_name_successful, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), R.string.change_password_successful, Toast.LENGTH_SHORT).show();
                                 } else {
                                     Toast.makeText(getContext(), R.string.reg_characters_fail, Toast.LENGTH_SHORT).show();
                                 }
