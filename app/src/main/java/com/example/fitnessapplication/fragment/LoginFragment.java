@@ -17,7 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.fitnessapplication.R;
 import com.example.fitnessapplication.fragment.trainee.TraineeHomeFragment;
-import com.example.fitnessapplication.fragment.trainer.TrainerOptionsFragment;
+import com.example.fitnessapplication.fragment.trainer.TrainerHomeFragment;
 import com.example.fitnessapplication.model.User;
 import com.example.fitnessapplication.utils.Constant;
 import com.example.fitnessapplication.utils.FragmentNavigation;
@@ -125,7 +125,7 @@ public class LoginFragment extends Fragment {
                         Constant.CURRENT_USER = user;
                         //if user is Trainer
                         if (sUserRole.equals(Constant.TRAINER)) {
-                            FragmentNavigation.getInstance(getContext()).replaceFragment(new TrainerOptionsFragment(), R.id.content_fragment);
+                            FragmentNavigation.getInstance(getContext()).replaceFragment(new TrainerHomeFragment(), R.id.content_fragment);
                         } else {
                             /*FirebaseDatabase p = FirebaseDatabase.getInstance();
                             DatabaseReference ref = p.getReference(Constant.EXERCISE_VIDEO);
