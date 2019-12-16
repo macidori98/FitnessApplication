@@ -1,12 +1,6 @@
 FitnessApplication
 
-A FitnessApplication alkalmazás egyaránt használható úgy edzők, mint az edzeni kivánó személyek által.
-Mindenkinek regisztrálni kell, s amikor regisztrál ki kell választania, hogy ő edzeni szeretne, vagy edző ként fogja használni az applikációt.
-Az edzők feltölthetik saját videójukat/képeiket, amelyek által segítik a hétköznapi embereket fejlődni.
-A trainee-k választhatnak, hogy aznap mire szeretnének edzeni, gyúrni, meg tudják nézni, hogy milyen edzőknek érhetik el a videójukat, meg tudják nézni a regszitrált edzők listáját.
-
-Készítették:
-Szabó Dorottya
-Vidámi Mózes
-
->>>>>>> 799e9e85686de18ce224ffaba1ecf1b6627a4b5f
+The FitnessApplication application can be used by trainers as well as those who want to train.
+Everyone has to register and when they register they have to choose whether they want to train or use the application as a trainer.
+Coaches can upload their own video (s) to help ordinary people develop.
+Trainees can choose between muscle groups and what they want to workout that day. They can see the list of couches, and they can watch their workout tutorials.
