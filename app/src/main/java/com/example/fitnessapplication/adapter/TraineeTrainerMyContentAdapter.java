@@ -2,9 +2,12 @@ package com.example.fitnessapplication.adapter;
 
 import android.content.Context;
 import android.net.Uri;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,6 +15,7 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -50,63 +54,13 @@ public class TraineeTrainerMyContentAdapter extends RecyclerView.Adapter<Trainee
         holder.vvTrainerVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (holder.vvTrainerVideo.isPlaying()) {
-                    holder.vvTrainerVideo.pause();
-                    Constant.VIDEO_STATUS = "pause";
-                    holder.imgBtnPlayPause.setImageResource(android.R.drawable.ic_media_play);
-                    Constant.VIDEO_POSITION = holder.vvTrainerVideo.getCurrentPosition();
-                    holder.ivStartIcon.setVisibility(View.VISIBLE);
-                    Toast.makeText(context, "pause", Toast.LENGTH_SHORT).show();
-                } else {
-                    if (Constant.VIDEO_STATUS.equals("pause")) {
-                        holder.imgBtnPlayPause.setImageResource(android.R.drawable.ic_media_pause);
-                        Constant.VIDEO_STATUS = "resume";
-                        holder.ivStartIcon.setVisibility(View.INVISIBLE);
-                        holder.vvTrainerVideo.seekTo(Constant.VIDEO_POSITION);
-                        holder.vvTrainerVideo.start();
-                        Toast.makeText(context, "resume", Toast.LENGTH_SHORT).show();
-                    }
 
-                    if (Constant.VIDEO_STATUS.equals("")) {
-                        holder.ivTrainerImage.setVisibility(View.INVISIBLE);
-                        holder.ivStartIcon.setVisibility(View.INVISIBLE);
-                        holder.imgBtnPlayPause.setImageResource(android.R.drawable.ic_media_pause);
-                        holder.vvTrainerVideo.seekTo(1);
-                        holder.vvTrainerVideo.start();
-                        Toast.makeText(context, "start", Toast.LENGTH_SHORT).show();
-                    }
-                }
             }
         });
         holder.imgBtnPlayPause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (holder.vvTrainerVideo.isPlaying()) {
-                    holder.vvTrainerVideo.pause();
-                    Constant.VIDEO_STATUS = "pause";
-                    holder.imgBtnPlayPause.setImageResource(android.R.drawable.ic_media_play);
-                    Constant.VIDEO_POSITION = holder.vvTrainerVideo.getCurrentPosition();
-                    holder.ivStartIcon.setVisibility(View.VISIBLE);
-                    //Toast.makeText(context, "pause", Toast.LENGTH_SHORT).show();
-                } else {
-                    if (Constant.VIDEO_STATUS.equals("pause")) {
-                        holder.imgBtnPlayPause.setImageResource(android.R.drawable.ic_media_pause);
-                        Constant.VIDEO_STATUS = "resume";
-                        holder.ivStartIcon.setVisibility(View.INVISIBLE);
-                        holder.vvTrainerVideo.seekTo(Constant.VIDEO_POSITION);
-                        holder.vvTrainerVideo.start();
-                        //Toast.makeText(context, "resume", Toast.LENGTH_SHORT).show();
-                    }
-
-                    if (Constant.VIDEO_STATUS.equals("")) {
-                        holder.ivTrainerImage.setVisibility(View.INVISIBLE);
-                        holder.ivStartIcon.setVisibility(View.INVISIBLE);
-                        holder.imgBtnPlayPause.setImageResource(android.R.drawable.ic_media_pause);
-                        holder.vvTrainerVideo.seekTo(1);
-                        holder.vvTrainerVideo.start();
-                        //Toast.makeText(context, "start", Toast.LENGTH_SHORT).show();
-                    }
-                }
+                playStopButton(holder);
             }
         });
         holder.vvTrainerVideo.setOnLongClickListener(new View.OnLongClickListener() {
@@ -116,13 +70,18 @@ public class TraineeTrainerMyContentAdapter extends RecyclerView.Adapter<Trainee
                 return false;
             }
         });
+        holder.imgBtnFullScreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fullScreenButton(holder);
+            }
+        });
         loadImage(Glide.with(context), videoList.get(position).getUrl(), holder.ivTrainerImage);
     }
 
     private void loadImage(RequestManager glide, String url, ImageView view) {
         glide.load(url).into(view);
     }
-
 
     @Override
     public int getItemCount() {
@@ -135,10 +94,11 @@ public class TraineeTrainerMyContentAdapter extends RecyclerView.Adapter<Trainee
         private TextView tvTrainerVideoTitle, tvTrainerVideoMuscleGroup,
                 tvTrainerVideoDescription;
         private ImageView ivTrainerImage, ivStartIcon;
-        private ImageButton imgBtnPlayPause;
+        private ImageButton imgBtnPlayPause, imgBtnFullScreen;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            imgBtnFullScreen = itemView.findViewById(R.id.imageButton_recyclerview_trainee_trainer_my_content_full_screen);
             imgBtnPlayPause = itemView.findViewById(R.id.imageButton_recyclerview_trainee_trainer_my_content_media_play_pause);
             ivStartIcon = itemView.findViewById(R.id.imageView_recyclerview_trainee_trainer_my_content_media_play);
             ivTrainerImage = itemView.findViewById(R.id.imageView_recyclerview_trainee_trainer_my_content_image);
@@ -146,6 +106,59 @@ public class TraineeTrainerMyContentAdapter extends RecyclerView.Adapter<Trainee
             tvTrainerVideoMuscleGroup = itemView.findViewById(R.id.textView_recyclerview_trainee_trainer_my_content_muscle_group);
             tvTrainerVideoTitle = itemView.findViewById(R.id.textView_recyclerview_trainee_trainer_my_content_title);
             tvTrainerVideoDescription = itemView.findViewById(R.id.textView_recyclerview_trainee_trainer_my_content_description);
+        }
+    }
+
+    private void fullScreenButton(@NonNull final TraineeTrainerMyContentAdapter.MyViewHolder holder){
+        DisplayMetrics metrics = new DisplayMetrics();
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        Display display = windowManager.getDefaultDisplay();
+        display.getMetrics(metrics);
+        ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) holder.vvTrainerVideo.getLayoutParams();
+        if (Constant.FULL_SCREEN_STATUS.equals("mini")){
+            params.width = metrics.widthPixels;
+            params.height = metrics.heightPixels;
+            params.leftMargin = 0;
+            holder.vvTrainerVideo.setLayoutParams(params);
+            if (Constant.VIDEO_STATUS.equals("")){
+                holder.ivTrainerImage.setLayoutParams(params);
+            }
+            Constant.FULL_SCREEN_STATUS="full";
+        } else {
+            Constant.FULL_SCREEN_STATUS="mini";
+            params.width = (int) (400*metrics.density);
+            params.height = (int) (200*metrics.density);
+            params.leftMargin = 0;
+            holder.vvTrainerVideo.setLayoutParams(params);
+        }
+    }
+
+    private void playStopButton(@NonNull final TraineeTrainerMyContentAdapter.MyViewHolder holder){
+        if (holder.vvTrainerVideo.isPlaying()) {
+            holder.vvTrainerVideo.pause();
+            Constant.VIDEO_STATUS = "pause";
+            holder.imgBtnPlayPause.setImageResource(android.R.drawable.ic_media_play);
+            Constant.VIDEO_POSITION = holder.vvTrainerVideo.getCurrentPosition();
+            holder.ivStartIcon.setVisibility(View.VISIBLE);
+            Toast.makeText(context, "pause", Toast.LENGTH_SHORT).show();
+        } else {
+            if (Constant.VIDEO_STATUS.equals("pause")) {
+                holder.imgBtnPlayPause.setImageResource(android.R.drawable.ic_media_pause);
+                Constant.VIDEO_STATUS = "resume";
+                holder.ivStartIcon.setVisibility(View.INVISIBLE);
+                holder.vvTrainerVideo.seekTo(Constant.VIDEO_POSITION);
+                holder.vvTrainerVideo.start();
+                Toast.makeText(context, "resume", Toast.LENGTH_SHORT).show();
+            }
+
+            if (Constant.VIDEO_STATUS.equals("")) {
+                holder.ivTrainerImage.setVisibility(View.INVISIBLE);
+                holder.ivStartIcon.setVisibility(View.INVISIBLE);
+                holder.imgBtnPlayPause.setImageResource(android.R.drawable.ic_media_pause);
+                holder.vvTrainerVideo.seekTo(1);
+                holder.vvTrainerVideo.start();
+                Toast.makeText(context, "start", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }

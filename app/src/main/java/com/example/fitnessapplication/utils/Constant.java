@@ -9,8 +9,8 @@ public class Constant {
     public static final String USERS = "users";
     public static final String ARMS = "arms";
     public static final String EXERCISE_VIDEO = "exercise_video";
-    public static final String MUSCLE_GROUP = "muscle_group";
-    public static final String TRAINER_ID = "trainer_id";
+    public static final String MUSCLE_GROUP = "muscleGroup";
+    public static final String TRAINER_ID = "trainerId";
     public static final String URL = "url";
     public static final String TITLE = "title";
     public static final String DESCRIPTION = "description";
@@ -27,4 +27,5 @@ public class Constant {
     public static String VIDEO_STATUS = "";
     public static int VIDEO_POSITION;
     public static List<Trainer> TRAINERS_LIST;
+    public static String FULL_SCREEN_STATUS = "mini";
 }
