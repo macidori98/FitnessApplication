@@ -65,10 +65,16 @@
 
     <ImageButton
         android:id="@+id/imageButton_recyclerview_trainee_trainer_my_content_media_play_pause"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/videoView_recyclerview_trainee_trainer_my_content_video"
         app:layout_constraintStart_toStartOf="@+id/videoView_recyclerview_trainee_trainer_my_content_video" />
 
-
+    <ImageButton
+        android:id="@+id/imageButton_recyclerview_trainee_trainer_my_content_full_screen"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@mipmap/full_screen"
+        app:layout_constraintBottom_toBottomOf="@+id/videoView_recyclerview_trainee_trainer_my_content_video"
+        app:layout_constraintEnd_toEndOf="@id/videoView_recyclerview_trainee_trainer_my_content_video" />
 </androidx.constraintlayout.widget.ConstraintLayout>
