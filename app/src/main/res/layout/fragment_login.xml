@@ -62,6 +62,8 @@
         android:paddingStart="40dp"
         android:paddingEnd="40dp"
         android:text="@string/login"
+        android:textStyle="bold"
+        android:background="@color/colorAccent"
         android:textColor="@color/colorText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

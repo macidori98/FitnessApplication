@@ -1,5 +1,6 @@
 package com.example.fitnessapplication.fragment.trainee;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,11 +43,20 @@ public class TraineeMuscleGroupsFragment extends Fragment {
 
     private void addButtons() {
         final List<String> buttonString = Arrays.asList(getResources().getStringArray(R.array.trainee_muscle_groups));
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        params.setMargins(15, 15, 15, 15);
         for (int i = 0; i < buttonString.size(); ++i) {
             final int ii = i;
             Button btn = new Button(getContext());
             btn.setText(buttonString.get(i));
+            btn.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+            btn.setPadding(10,10,10,10);
             btn.setTextColor(getResources().getColor(R.color.colorText));
+            btn.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+            btn.setLayoutParams(params);
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
