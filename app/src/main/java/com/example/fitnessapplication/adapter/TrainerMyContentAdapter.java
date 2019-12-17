@@ -62,7 +62,7 @@ public class TrainerMyContentAdapter extends RecyclerView.Adapter<TrainerMyConte
             public void onClick(View view) {
                 playStopButton(holder);
             }
-        });
+        }); 
         holder.vvExerciseVideo.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
