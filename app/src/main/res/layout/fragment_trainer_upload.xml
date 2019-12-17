@@ -4,4 +4,46 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/tv_trainer_upload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp10"
+        android:textAlignment="center"
+        android:textColor="@color/colorText"
+        android:textSize="@dimen/sp30"
+        android:text="Upload Content" />
+
+    <EditText
+        android:id="@+id/et_trainer_upload_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Enter a Title"/>
+
+    <EditText
+        android:id="@+id/et_trainer_upload_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Enter a Description"/>
+
+    <Spinner
+        android:id="@+id/sp_upload_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textAlignment="center"/>
+
+    <Button
+        android:id="@+id/btn_trainer_upload_upload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        android:background="@color/colorAccent"
+        android:textStyle="bold"
+        android:textColor="@color/colorText"
+        android:layout_gravity="center"/>
 </LinearLayout>

@@ -21,6 +21,8 @@ import com.example.fitnessapplication.fragment.trainee.TraineeTrainerMyContentFr
 import com.example.fitnessapplication.fragment.trainee.TraineeTrainersFragment;
 import com.example.fitnessapplication.fragment.trainer.TrainerHomeFragment;
 import com.example.fitnessapplication.fragment.trainer.TrainerMyContentFragment;
+import com.example.fitnessapplication.fragment.trainer.TrainerSettingsFragment;
+import com.example.fitnessapplication.fragment.trainer.TrainerUploadFragment;
 
 public class FragmentNavigation extends Fragment {
     public final static String TAG = FragmentNavigation.class.getSimpleName();
@@ -124,6 +126,20 @@ public class FragmentNavigation extends Fragment {
         }
 
         if (getCurrentFragment(mMainActivityFragmentContainer) instanceof TrainerHomeFragment) {
+            popBackstack();
+            return;
+        }
+
+        if (getCurrentFragment(mMainActivityFragmentContainer) instanceof TrainerMyContentFragment) {
+            popBackstack();
+            return;
+        }
+        if (getCurrentFragment(mMainActivityFragmentContainer) instanceof TrainerUploadFragment) {
+            popBackstack();
+            return;
+        }
+
+        if (getCurrentFragment(mMainActivityFragmentContainer) instanceof TrainerSettingsFragment) {
             popBackstack();
             return;
         }
