@@ -58,12 +58,12 @@ public class TrainerMyContentFragment extends Fragment {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String sDBtrainer_id = snapshot.child(Constant.TRAINER_ID).getValue().toString();
                     if (sDBtrainer_id.toLowerCase().equals(Constant.CURRENT_USER.getId().toLowerCase())) {
-                        String sDBid = snapshot.child(Constant.ID).getValue().toString();
-                        String sDBurl = snapshot.child(Constant.URL).getValue().toString();
-                        String sDBtitle = snapshot.child(Constant.TITLE).getValue().toString();
-                        String sDBdescription = snapshot.child(Constant.DESCRIPTION).getValue().toString();
-                        String sDBmusclegroup = snapshot.child(Constant.MUSCLE_GROUP).getValue().toString();
-                        ExerciseVideo exerciseVideo = new ExerciseVideo(sDBid, sDBtrainer_id, sDBurl, sDBtitle, sDBmusclegroup, sDBdescription);
+                        String sDBId = snapshot.child(Constant.ID).getValue().toString();
+                        String sDBUrl = snapshot.child(Constant.URL).getValue().toString();
+                        String sDBTitle = snapshot.child(Constant.TITLE).getValue().toString();
+                        String sDBDescription = snapshot.child(Constant.DESCRIPTION).getValue().toString();
+                        String sDBMuscleGroup = snapshot.child(Constant.MUSCLE_GROUP).getValue().toString();
+                        ExerciseVideo exerciseVideo = new ExerciseVideo(sDBId, sDBtrainer_id, sDBUrl, sDBTitle, sDBMuscleGroup, sDBDescription);
                         videoList.add(exerciseVideo);
                     }
                 }
