@@ -40,53 +40,48 @@ public class TrainerMyContentFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_trainer_my_content, container, false);
-
-
-        videoList = new ArrayList<>();
-        mDatabase = FirebaseDatabase.getInstance();
-        mRef = mDatabase.getReference(Constant.EXERCISE_VIDEO);
-        recyclerView_trainer_my_content = view.findViewById(R.id.recyclerView_trainer_my_content);
-        recyclerView_trainer_my_content.setLayoutManager(new LinearLayoutManager(getContext()));
-        getData();
-
         initializeViewElements(view);
+        getData();
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
     }
 
+    //Query to get the exercise videos of the current user
     private void getData() {
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    String trainer_id = snapshot.child(Constant.TRAINER_ID).getValue().toString();
-                    if (trainer_id.toLowerCase().equals(Constant.CURRENT_USER.getId().toLowerCase())) {
-                        String id = snapshot.child(Constant.ID).getValue().toString();
-                        String url = snapshot.child(Constant.URL).getValue().toString();
-                        String title = snapshot.child(Constant.TITLE).getValue().toString();
-                        String description = snapshot.child(Constant.DESCRIPTION).getValue().toString();
-                        String musclegroup = snapshot.child(Constant.MUSCLE_GROUP).getValue().toString();
-                        ExerciseVideo exerciseVideo = new ExerciseVideo(id, trainer_id, url, title, musclegroup, description);
+                    String sDBtrainer_id = snapshot.child(Constant.TRAINER_ID).getValue().toString();
+                    if (sDBtrainer_id.toLowerCase().equals(Constant.CURRENT_USER.getId().toLowerCase())) {
+                        String sDBid = snapshot.child(Constant.ID).getValue().toString();
+                        String sDBurl = snapshot.child(Constant.URL).getValue().toString();
+                        String sDBtitle = snapshot.child(Constant.TITLE).getValue().toString();
+                        String sDBdescription = snapshot.child(Constant.DESCRIPTION).getValue().toString();
+                        String sDBmusclegroup = snapshot.child(Constant.MUSCLE_GROUP).getValue().toString();
+                        ExerciseVideo exerciseVideo = new ExerciseVideo(sDBid, sDBtrainer_id, sDBurl, sDBtitle, sDBmusclegroup, sDBdescription);
                         videoList.add(exerciseVideo);
                     }
                 }
                 mAdapter = new TrainerMyContentAdapter(videoList, getActivity());
                 recyclerView_trainer_my_content.setAdapter(mAdapter);
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                //Log.e("TraineMuscleGroupError","TraineMuscleGroupError");
+                Log.e(String.valueOf(R.string.trainer_my_content_error),String.valueOf(R.string.trainer_my_content_error));
             }
         });
     }
 
     private void initializeViewElements(View view) {
-
+        videoList = new ArrayList<>();
+        mDatabase = FirebaseDatabase.getInstance();
+        mRef = mDatabase.getReference(Constant.EXERCISE_VIDEO);
+        recyclerView_trainer_my_content = view.findViewById(R.id.recyclerView_trainer_my_content);
+        recyclerView_trainer_my_content.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 }

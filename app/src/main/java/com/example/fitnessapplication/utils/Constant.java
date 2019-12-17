@@ -28,4 +28,5 @@ public class Constant {
     public static int VIDEO_POSITION;
     public static List<Trainer> TRAINERS_LIST;
     public static String FULL_SCREEN_STATUS = "mini";
+
 }

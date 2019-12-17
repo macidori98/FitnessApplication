@@ -77,6 +77,10 @@
     <string name="enter_new_description">Enter New Description</string>
     <string name="change_content_successful">Your content has been modified</string>
     <string name="upload_successful">Your content has been uploaded</string>
+    <string name="change_content">Change Content</string>
+    <string name="mini">mini</string>
+    <string name="full">full</string>
+    <string name="trainer_my_content_error">Trainer my content error</string>
 
 
 </resources>
