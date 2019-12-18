@@ -23,7 +23,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.example.fitnessapplication.MainActivity;
 import com.example.fitnessapplication.R;
+import com.example.fitnessapplication.fragment.changes_dialogs.DeleteContentDialog;
 import com.example.fitnessapplication.fragment.changes_dialogs.UpdateContentDialog;
+import com.example.fitnessapplication.interfaces.RefreshListener;
 import com.example.fitnessapplication.model.ExerciseVideo;
 import com.example.fitnessapplication.utils.Constant;
 import com.google.firebase.database.DatabaseReference;
@@ -31,7 +33,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
-public class TrainerMyContentAdapter extends RecyclerView.Adapter<TrainerMyContentAdapter.MyViewHolder> {
+public class TrainerMyContentAdapter extends RecyclerView.Adapter<TrainerMyContentAdapter.MyViewHolder> implements RefreshListener {
 
     private List<ExerciseVideo> videoList;
     private Context context;
@@ -76,6 +78,12 @@ public class TrainerMyContentAdapter extends RecyclerView.Adapter<TrainerMyConte
                 EditContent(position);
             }
         });
+        holder.btnDeleteMyContent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteContent(position);
+            }
+        });
         holder.imgBtnFullScreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,12 +102,25 @@ public class TrainerMyContentAdapter extends RecyclerView.Adapter<TrainerMyConte
         return videoList.size();
     }
 
+    @Override
+    public void refreshAdapter(int position,ExerciseVideo exerciseVideo) {
+        videoList.set(position,exerciseVideo);
+        notifyItemChanged(position);
+    }
+
+    @Override
+    public void deleteFromAdapter(int position) {
+        videoList.remove(position);
+        notifyItemChanged(position);
+    }
+
     public class MyViewHolder extends RecyclerView.ViewHolder{
         TextView tvTitle, tvMuscleGroup, tvDescription;
         VideoView vvExerciseVideo;
         private ImageView ivTrainerImage, ivStartIcon;
         private ImageButton imgBtnPlayPause, imgBtnFullScreen;
         private Button btnEditMyContent;
+        private Button btnDeleteMyContent;
         private String video_id;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -113,14 +134,20 @@ public class TrainerMyContentAdapter extends RecyclerView.Adapter<TrainerMyConte
             ivStartIcon = itemView.findViewById(R.id.imageView_recyclerview_trainer_my_content_media_play);
             ivTrainerImage = itemView.findViewById(R.id.imageView_recyclerview_trainer_my_content_image);
             btnEditMyContent = itemView.findViewById(R.id.button_recyclerview_edit_my_content);
+            btnDeleteMyContent = itemView.findViewById(R.id.button_delete);
         }
     }
 
     private void EditContent(int position){
-        FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference mRef = mDatabase.getReference(Constant.EXERCISE_VIDEO);
-        UpdateContentDialog updateContentDialog = new UpdateContentDialog(videoList.get(position));
+        UpdateContentDialog updateContentDialog = new UpdateContentDialog(videoList.get(position),position);
+        updateContentDialog.setListener(this);
         updateContentDialog.show(((MainActivity)context).getSupportFragmentManager(), "Change Content");
+    }
+
+    private void deleteContent(int position){
+        DeleteContentDialog deleteContentDialog = new DeleteContentDialog(videoList.get(position),position);
+        deleteContentDialog.setListener(this);
+        deleteContentDialog.show(((MainActivity)context).getSupportFragmentManager(), "Delete Content");
     }
 
     private void fullScreenButton(@NonNull final TrainerMyContentAdapter.MyViewHolder holder){

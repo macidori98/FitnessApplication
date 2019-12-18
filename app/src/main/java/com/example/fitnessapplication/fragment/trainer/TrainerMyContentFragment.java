@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.fitnessapplication.R;
 import com.example.fitnessapplication.adapter.TrainerMyContentAdapter;
 import com.example.fitnessapplication.fragment.trainee.TraineeTrainersFragment;
+import com.example.fitnessapplication.interfaces.RefreshListener;
 import com.example.fitnessapplication.model.ExerciseVideo;
 import com.example.fitnessapplication.utils.Constant;
 import com.google.firebase.database.DataSnapshot;
@@ -26,7 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TrainerMyContentFragment extends Fragment {
+public class TrainerMyContentFragment extends Fragment implements RefreshListener {
 
     public final static String TAG = TraineeTrainersFragment.class.getSimpleName();
     private View view;
@@ -55,6 +56,7 @@ public class TrainerMyContentFragment extends Fragment {
         mRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                videoList = new ArrayList<>();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String sDBtrainer_id = snapshot.child(Constant.TRAINER_ID).getValue().toString();
                     if (sDBtrainer_id.toLowerCase().equals(Constant.CURRENT_USER.getId().toLowerCase())) {
@@ -83,5 +85,20 @@ public class TrainerMyContentFragment extends Fragment {
         mRef = mDatabase.getReference(Constant.EXERCISE_VIDEO);
         recyclerView_trainer_my_content = view.findViewById(R.id.recyclerView_trainer_my_content);
         recyclerView_trainer_my_content.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+
+    //Function that updates the recycler view with the updated element
+    @Override
+    public void refreshAdapter(int position,ExerciseVideo exerciseVideo) {
+        mAdapter.notifyItemChanged(position);
+        videoList.set(position,exerciseVideo);
+    }
+
+    @Override
+    public void deleteFromAdapter(int position) {
+        videoList.remove(position);
+        mAdapter.notifyItemRemoved(position);
+        mAdapter.notifyItemRangeChanged(position,videoList.size());
+        this.mAdapter.notifyDataSetChanged();
     }
 }
