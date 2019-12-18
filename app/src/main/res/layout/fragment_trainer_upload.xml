@@ -1,49 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/tv_trainer_upload"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dp10"
+        android:text="Upload Content"
         android:textAlignment="center"
         android:textColor="@color/colorText"
         android:textSize="@dimen/sp30"
-        android:text="Upload Content" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/et_trainer_upload_title"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="50dp"
         android:ems="10"
+        android:hint="Enter a Title"
         android:inputType="textPersonName"
-        android:hint="Enter a Title"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_trainer_upload" />
 
     <EditText
         android:id="@+id/et_trainer_upload_description"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:ems="10"
+        android:hint="Enter a Description"
         android:inputType="textPersonName"
-        android:hint="Enter a Description"/>
+        app:layout_constraintEnd_toEndOf="@+id/et_trainer_upload_title"
+        app:layout_constraintStart_toStartOf="@+id/et_trainer_upload_title"
+        app:layout_constraintTop_toBottomOf="@+id/et_trainer_upload_title" />
 
     <Spinner
         android:id="@+id/sp_upload_content"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:gravity="center"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/et_trainer_upload_description"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/et_trainer_upload_description"
+        app:layout_constraintTop_toBottomOf="@+id/et_trainer_upload_description" />
+
+    <Button
+        android:id="@+id/btn_upload_add_video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorAccent"
+        android:text="Select Video"
+        android:textColor="@color/colorText"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sp_upload_content" />
 
     <Button
         android:id="@+id/btn_trainer_upload_upload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Done"
+        android:layout_marginBottom="50dp"
         android:background="@color/colorAccent"
-        android:textStyle="bold"
+        android:text="Done"
         android:textColor="@color/colorText"
-        android:layout_gravity="center"/>
-</LinearLayout>
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

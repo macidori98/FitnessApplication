@@ -94,4 +94,16 @@
         app:layout_constraintBottom_toBottomOf="@+id/videoView_recyclerview_my_content_video"
         app:layout_constraintEnd_toEndOf="@+id/videoView_recyclerview_my_content_video" />
 
+    <Button
+        android:id="@+id/button_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:background="@color/colorAccent"
+        android:textStyle="bold"
+        android:textColor="@color/colorText"
+        android:text="Delete"
+        app:layout_constraintStart_toEndOf="@+id/button_recyclerview_edit_my_content"
+        app:layout_constraintTop_toTopOf="@+id/button_recyclerview_edit_my_content" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
