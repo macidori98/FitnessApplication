@@ -82,5 +82,12 @@
     <string name="full">full</string>
     <string name="trainer_my_content_error">Trainer my content error</string>
 
+    <string name="delete_content_dialog_title">Delete Content</string>
+    <string name="cancel_delete_content">Content was not deleted</string>
+    <string name="delete_content_successful">Your content has been deleted</string>
+
+    <string name="video_selected">A video was selected</string>
+    <string name="uploaded">Uploaded </string>
+    <string name="failed">Failed </string>
 
 </resources>

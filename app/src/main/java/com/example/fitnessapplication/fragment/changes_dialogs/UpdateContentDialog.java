@@ -16,8 +16,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.example.fitnessapplication.R;
+import com.example.fitnessapplication.interfaces.RefreshListener;
 import com.example.fitnessapplication.model.ExerciseVideo;
-import com.example.fitnessapplication.model.User;
 import com.example.fitnessapplication.utils.Constant;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -26,12 +26,15 @@ public class UpdateContentDialog extends AppCompatDialogFragment {
     private FirebaseDatabase mDatabase;
     private DatabaseReference mRef;
     private EditText etNewTitle, etNewDescription;
-    private Spinner SpNewGroup;
+    private Spinner spNewGroup;
     private ExerciseVideo oldExerciseVideo;
     private ArrayAdapter<CharSequence> adapter;
+    private RefreshListener refreshListener;
+    private int position;
 
-    public UpdateContentDialog(ExerciseVideo exerciseVideo){
+    public UpdateContentDialog(ExerciseVideo exerciseVideo,int position){
         this.oldExerciseVideo = exerciseVideo;
+        this.position = position;
     }
 
     @NonNull
@@ -47,14 +50,14 @@ public class UpdateContentDialog extends AppCompatDialogFragment {
 
     //Function that sets up the spinner with the muscle groups
     private void setupSpinner(View view){
-        SpNewGroup= view.findViewById(R.id.spinner_changecontent);
+        spNewGroup = view.findViewById(R.id.spinner_changecontent);
         // Create an ArrayAdapter using the string array and a default spinner layout
         adapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.trainee_muscle_groups, android.R.layout.simple_spinner_item);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
-        SpNewGroup.setAdapter(adapter);
+        spNewGroup.setAdapter(adapter);
     }
 
     private void initializeViewElements(View view) {
@@ -81,13 +84,15 @@ public class UpdateContentDialog extends AppCompatDialogFragment {
                         String oldTrainerID = oldExerciseVideo.getTrainerId();
                         String oldURL = oldExerciseVideo.getUrl();
                         String title = etNewTitle.getText().toString();
-                        int idx = (int) SpNewGroup.getSelectedItemId();
+                        int idx = (int) spNewGroup.getSelectedItemId();
                         String muscleGroupSelected = adapter.getItem(idx).toString();
                         String description = etNewDescription.getText().toString();
                         ExerciseVideo exerciseVideo = new ExerciseVideo(oldID,oldTrainerID,oldURL,title,muscleGroupSelected,description);
                         mRef.child(oldID).setValue(exerciseVideo);
                         Toast.makeText(getContext(), R.string.change_content_successful, Toast.LENGTH_SHORT).show();
+                        refreshListener.refreshAdapter(position,exerciseVideo);
                     }
                 });
     }
+    public void setListener(RefreshListener listener){this.refreshListener = listener;}
 }
