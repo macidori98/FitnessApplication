@@ -131,12 +131,14 @@ public class TrainerMyContentAdapter extends RecyclerView.Adapter<TrainerMyConte
         }
     }
 
+    //Starts the edit content dialog
     private void EditContent(int position){
         UpdateContentDialog updateContentDialog = new UpdateContentDialog(videoList.get(position),position);
         updateContentDialog.setListener(this);
         updateContentDialog.show(((MainActivity)context).getSupportFragmentManager(), Constant.CHANGE_CONTENT);
     }
 
+    //Starts the delete content dialog
     private void deleteContent(int position){
         DeleteContentDialog deleteContentDialog = new DeleteContentDialog(videoList.get(position),position);
         deleteContentDialog.setListener(this);

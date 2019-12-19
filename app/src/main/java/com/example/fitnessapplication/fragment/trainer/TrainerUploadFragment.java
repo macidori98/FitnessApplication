@@ -3,17 +3,14 @@ package com.example.fitnessapplication.fragment.trainer;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -21,7 +18,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.fitnessapplication.MainActivity;
 import com.example.fitnessapplication.R;
 import com.example.fitnessapplication.model.ExerciseVideo;
 import com.example.fitnessapplication.utils.Constant;
@@ -35,10 +31,7 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.io.IOException;
 import java.util.UUID;
-
-import static android.app.Activity.RESULT_OK;
 
 public class TrainerUploadFragment extends Fragment {
 
@@ -48,7 +41,7 @@ public class TrainerUploadFragment extends Fragment {
     private EditText etUploadTitle, etUploadDescription;
     private Button btnUpload;
     private Spinner spMuscleGroup;
-    private final int PICK_IMAGE_REQUEST = 1;
+    private final int pickImageRequest = 1;
     private ArrayAdapter<CharSequence> adapter;
     private Button btnAddImage;
     private Uri selectedImage;
@@ -91,9 +84,10 @@ public class TrainerUploadFragment extends Fragment {
         setupSpinner(view);
     }
 
+    //function that uploads the selected video to the firebase storage if it exists
     private void onClickUpload(){
-        FirebaseDatabase p = FirebaseDatabase.getInstance();
-        final DatabaseReference ref = p.getReference(Constant.EXERCISE_VIDEO);
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        final DatabaseReference ref = firebaseDatabase.getReference(Constant.EXERCISE_VIDEO);
         final String key = ref.push().getKey();
         final String title = etUploadTitle.getText().toString();
         final String description = etUploadDescription.getText().toString();
@@ -158,13 +152,15 @@ public class TrainerUploadFragment extends Fragment {
         spMuscleGroup.setAdapter(adapter);
     }
 
+    //function that starts the gallery activity, to select a video
     private void chooseImage() {
         Intent intent = new Intent();
         intent.setType("video/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Video"), PICK_IMAGE_REQUEST);
+        startActivityForResult(Intent.createChooser(intent, "Select Video"), pickImageRequest);
     }
 
+    //if the activity comes back with an OK result, the video is loaded in an attribute
     @Override
     public void onActivityResult(int requestCode,int resultCode,Intent data){
         // Result code is RESULT_OK only if the user selects an Image
