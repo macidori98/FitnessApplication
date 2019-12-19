@@ -2,6 +2,7 @@ package com.example.fitnessapplication.fragment;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -127,11 +128,6 @@ public class LoginFragment extends Fragment {
                         if (sUserRole.equals(Constant.TRAINER)) {
                             FragmentNavigation.getInstance(getContext()).replaceFragment(new TrainerHomeFragment(), R.id.content_fragment);
                         } else {
-                            /*FirebaseDatabase p = FirebaseDatabase.getInstance();
-                            DatabaseReference ref = p.getReference(Constant.EXERCISE_VIDEO);
-                            String key = ref.push().getKey();
-                            ExerciseVideo v = new ExerciseVideo(key, "-Lw3dhsTGLr50kwoOXV9", "https://firebasestorage.googleapis.com/v0/b/fitnessapplication2.appspot.com/o/video-1576262209.mp4?alt=media&token=c9e0521d-6e34-4166-a690-967b8da344ca", "Maci", "Arms", "bla bla bla");
-                            ref.child(key).setValue(v);*/
                             FragmentNavigation.getInstance(getContext()).replaceFragment(new TraineeHomeFragment(), R.id.content_fragment);
                         }
                         break;
@@ -145,7 +141,7 @@ public class LoginFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                //log
+                Log.i(Constant.FIREBASE_ON_CANCELLED, Constant.FIREBASE_ON_CANCELLED);
             }
         });
     }

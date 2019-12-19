@@ -48,6 +48,7 @@ public class TraineeMuscleGroupExercisesAdapter extends RecyclerView.Adapter<Tra
         holder.vvExerciseVideo.setVideoURI(Uri.parse(videoList.get(position).getUrl()));
         holder.imgBtnPlayPause.setImageResource(android.R.drawable.ic_media_play);
         holder.tvTitle.setText(videoList.get(position).getTitle());
+        holder.tvDescription.setText(videoList.get(position).getDescription());
         for (int i = 0; i < Constant.TRAINERS_LIST.size(); ++i) {
             if (Constant.TRAINERS_LIST.get(i).getId().equals(videoList.get(position).getTrainerId())) {
                 holder.tvTrainer.setText(Constant.TRAINERS_LIST.get(i).getTrainerName());
@@ -82,13 +83,14 @@ public class TraineeMuscleGroupExercisesAdapter extends RecyclerView.Adapter<Tra
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView tvTitle, tvTrainer;
+        private TextView tvTitle, tvTrainer, tvDescription;
         private VideoView vvExerciseVideo;
         private ImageView ivExerciseImage, ivMediaPlay;
         private ImageButton imgBtnPlayPause, imgBtnFullScreen;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            tvDescription = itemView.findViewById(R.id.textView_recyclerview_trainee_muscle_group_exercise_video_description);
             imgBtnFullScreen = itemView.findViewById(R.id.button_recyclerview_trainee_muscle_group_exercise_full_screen);
             imgBtnPlayPause = itemView.findViewById(R.id.button_recyclerview_trainee_muscle_group_exercise_media_play_pause);
             ivMediaPlay = itemView.findViewById(R.id.imageView_recyclerview_trainee_muscle_group_exercise_media_play);
@@ -105,7 +107,7 @@ public class TraineeMuscleGroupExercisesAdapter extends RecyclerView.Adapter<Tra
         Display display = windowManager.getDefaultDisplay();
         display.getMetrics(metrics);
         ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) holder.vvExerciseVideo.getLayoutParams();
-        if (Constant.FULL_SCREEN_STATUS.equals("mini")){
+        if (Constant.FULL_SCREEN_STATUS.equals(Constant.MINI)){
             params.width = metrics.widthPixels;
             params.height = metrics.heightPixels;
             params.leftMargin = 0;
@@ -113,9 +115,9 @@ public class TraineeMuscleGroupExercisesAdapter extends RecyclerView.Adapter<Tra
             if (Constant.VIDEO_STATUS.equals("")){
                 holder.ivExerciseImage.setLayoutParams(params);
             }
-            Constant.FULL_SCREEN_STATUS="full";
+            Constant.FULL_SCREEN_STATUS=Constant.FULL;
         } else {
-            Constant.FULL_SCREEN_STATUS="mini";
+            Constant.FULL_SCREEN_STATUS=Constant.MINI;
             params.width = (int) (400*metrics.density);
             params.height = (int) (200*metrics.density);
             params.leftMargin = 0;
@@ -126,19 +128,17 @@ public class TraineeMuscleGroupExercisesAdapter extends RecyclerView.Adapter<Tra
     private void playStopButton(@NonNull final TraineeMuscleGroupExercisesAdapter.MyViewHolder holder){
         if (holder.vvExerciseVideo.isPlaying()) {
             holder.vvExerciseVideo.pause();
-            Constant.VIDEO_STATUS = "pause";
+            Constant.VIDEO_STATUS = Constant.PAUSE;
             holder.imgBtnPlayPause.setImageResource(android.R.drawable.ic_media_play);
             Constant.VIDEO_POSITION = holder.vvExerciseVideo.getCurrentPosition();
             holder.ivMediaPlay.setVisibility(View.VISIBLE);
-            //Toast.makeText(context, "pause", Toast.LENGTH_SHORT).show();
         } else {
-            if (Constant.VIDEO_STATUS.equals("pause")) {
-                Constant.VIDEO_STATUS = "resume";
+            if (Constant.VIDEO_STATUS.equals(Constant.PAUSE)) {
+                Constant.VIDEO_STATUS = Constant.RESUME;
                 holder.imgBtnPlayPause.setImageResource(android.R.drawable.ic_media_pause);
                 holder.ivMediaPlay.setVisibility(View.INVISIBLE);
                 holder.vvExerciseVideo.seekTo(Constant.VIDEO_POSITION);
                 holder.vvExerciseVideo.start();
-                //Toast.makeText(context, "resume", Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -148,7 +148,6 @@ public class TraineeMuscleGroupExercisesAdapter extends RecyclerView.Adapter<Tra
             holder.imgBtnPlayPause.setImageResource(android.R.drawable.ic_media_pause);
             holder.vvExerciseVideo.seekTo(1);
             holder.vvExerciseVideo.start();
-            //Toast.makeText(context, "start", Toast.LENGTH_SHORT).show();
         }
     }
 
