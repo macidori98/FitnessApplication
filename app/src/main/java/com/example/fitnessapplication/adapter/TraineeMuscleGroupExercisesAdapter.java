@@ -118,8 +118,8 @@ public class TraineeMuscleGroupExercisesAdapter extends RecyclerView.Adapter<Tra
             Constant.FULL_SCREEN_STATUS=Constant.FULL;
         } else {
             Constant.FULL_SCREEN_STATUS=Constant.MINI;
-            params.width = (int) (400*metrics.density);
-            params.height = (int) (200*metrics.density);
+            params.width = (int) (Constant.WIDTH*metrics.density);
+            params.height = (int) (Constant.HEIGHT*metrics.density);
             params.leftMargin = 0;
             holder.vvExerciseVideo.setLayoutParams(params);
         }

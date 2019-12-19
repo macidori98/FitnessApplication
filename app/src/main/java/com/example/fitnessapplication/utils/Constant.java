@@ -37,4 +37,6 @@ public class Constant {
     public static final String FIREBASE_ON_CANCELLED = "on cancelled";
     public static final String CHANGE_PASSWORD = "Change password";
     public static final String CHANGE_NAME = "Change name";
+    public static final int HEIGHT = 200;
+    public static final int WIDTH = 400;
 }

@@ -49,7 +49,7 @@
     </string-array>
 
     <string name="back_button_press">Please click BACK again to exit!</string>
-
+    <string name="trainers_list">Trainers list</string>
     <string name="user_not_found">User not Found</string>
     <string name="dark_mode">Dark mode</string>
     <string name="change_password">Change password</string>
