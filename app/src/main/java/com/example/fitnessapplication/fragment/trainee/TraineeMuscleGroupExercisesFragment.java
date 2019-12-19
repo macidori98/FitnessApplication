@@ -1,6 +1,7 @@
 package com.example.fitnessapplication.fragment.trainee;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,14 +42,7 @@ public class TraineeMuscleGroupExercisesFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_trainee_muscle_group_exercises, container, false);
-        videoList = new ArrayList<>();
-        mDatabase = FirebaseDatabase.getInstance();
-        mRef = mDatabase.getReference(Constant.EXERCISE_VIDEO);
-        getData();
-        tvTitle = view.findViewById(R.id.textView_title);
-        tvTitle.setText(Constant.SELECTED_MUSCLE_GROUP);
-        recyclerViewTraineeMuscleGroupExercise = view.findViewById(R.id.recyclerView_trainee_muscle_group_exercises);
-        recyclerViewTraineeMuscleGroupExercise.setLayoutManager(new LinearLayoutManager(getContext()));
+        initializeElements(view);
         return view;
     }
 
@@ -75,7 +69,7 @@ public class TraineeMuscleGroupExercisesFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                Log.i(Constant.FIREBASE_ON_CANCELLED, Constant.FIREBASE_ON_CANCELLED);
             }
         });
     }
@@ -83,5 +77,16 @@ public class TraineeMuscleGroupExercisesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    private void initializeElements(View view){
+        videoList = new ArrayList<>();
+        mDatabase = FirebaseDatabase.getInstance();
+        mRef = mDatabase.getReference(Constant.EXERCISE_VIDEO);
+        getData();
+        tvTitle = view.findViewById(R.id.textView_title);
+        tvTitle.setText(Constant.SELECTED_MUSCLE_GROUP);
+        recyclerViewTraineeMuscleGroupExercise = view.findViewById(R.id.recyclerView_trainee_muscle_group_exercises);
+        recyclerViewTraineeMuscleGroupExercise.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 }

@@ -64,13 +64,6 @@ public class TrainerMyContentAdapter extends RecyclerView.Adapter<TrainerMyConte
             public void onClick(View view) {
                 playStopButton(holder);
             }
-        }); 
-        holder.vvExerciseVideo.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                Toast.makeText(context, "long", Toast.LENGTH_SHORT).show();
-                return false;
-            }
         });
         holder.btnEditMyContent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,13 +134,13 @@ public class TrainerMyContentAdapter extends RecyclerView.Adapter<TrainerMyConte
     private void EditContent(int position){
         UpdateContentDialog updateContentDialog = new UpdateContentDialog(videoList.get(position),position);
         updateContentDialog.setListener(this);
-        updateContentDialog.show(((MainActivity)context).getSupportFragmentManager(), "Change Content");
+        updateContentDialog.show(((MainActivity)context).getSupportFragmentManager(), Constant.CHANGE_CONTENT);
     }
 
     private void deleteContent(int position){
         DeleteContentDialog deleteContentDialog = new DeleteContentDialog(videoList.get(position),position);
         deleteContentDialog.setListener(this);
-        deleteContentDialog.show(((MainActivity)context).getSupportFragmentManager(), "Delete Content");
+        deleteContentDialog.show(((MainActivity)context).getSupportFragmentManager(), Constant.DELETE_CONTENT);
     }
 
     private void fullScreenButton(@NonNull final TrainerMyContentAdapter.MyViewHolder holder){
@@ -156,7 +149,7 @@ public class TrainerMyContentAdapter extends RecyclerView.Adapter<TrainerMyConte
         Display display = windowManager.getDefaultDisplay();
         display.getMetrics(metrics);
         ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) holder.vvExerciseVideo.getLayoutParams();
-        if (Constant.FULL_SCREEN_STATUS.equals("mini")){
+        if (Constant.FULL_SCREEN_STATUS.equals(Constant.MINI)){
             params.width = metrics.widthPixels;
             params.height = metrics.heightPixels;
             params.leftMargin = 0;
@@ -164,9 +157,9 @@ public class TrainerMyContentAdapter extends RecyclerView.Adapter<TrainerMyConte
             if (Constant.VIDEO_STATUS.equals("")){
                 holder.ivTrainerImage.setLayoutParams(params);
             }
-            Constant.FULL_SCREEN_STATUS="full";
+            Constant.FULL_SCREEN_STATUS=Constant.FULL;
         } else {
-            Constant.FULL_SCREEN_STATUS="mini";
+            Constant.FULL_SCREEN_STATUS=Constant.MINI;
             params.width = (int) (400*metrics.density);
             params.height = (int) (200*metrics.density);
             params.leftMargin = 0;
@@ -177,19 +170,17 @@ public class TrainerMyContentAdapter extends RecyclerView.Adapter<TrainerMyConte
     private void playStopButton(@NonNull final TrainerMyContentAdapter.MyViewHolder holder){
         if (holder.vvExerciseVideo.isPlaying()) {
             holder.vvExerciseVideo.pause();
-            Constant.VIDEO_STATUS = "pause";
+            Constant.VIDEO_STATUS = Constant.PAUSE;
             holder.imgBtnPlayPause.setImageResource(android.R.drawable.ic_media_play);
             Constant.VIDEO_POSITION = holder.vvExerciseVideo.getCurrentPosition();
             holder.ivStartIcon.setVisibility(View.VISIBLE);
-            Toast.makeText(context, "pause", Toast.LENGTH_SHORT).show();
         } else {
-            if (Constant.VIDEO_STATUS.equals("pause")) {
+            if (Constant.VIDEO_STATUS.equals(Constant.PAUSE)) {
                 holder.imgBtnPlayPause.setImageResource(android.R.drawable.ic_media_pause);
-                Constant.VIDEO_STATUS = "resume";
+                Constant.VIDEO_STATUS = Constant.RESUME;
                 holder.ivStartIcon.setVisibility(View.INVISIBLE);
                 holder.vvExerciseVideo.seekTo(Constant.VIDEO_POSITION);
                 holder.vvExerciseVideo.start();
-                Toast.makeText(context, "resume", Toast.LENGTH_SHORT).show();
             }
             if (Constant.VIDEO_STATUS.equals("")) {
                 holder.ivTrainerImage.setVisibility(View.INVISIBLE);
@@ -197,7 +188,6 @@ public class TrainerMyContentAdapter extends RecyclerView.Adapter<TrainerMyConte
                 holder.imgBtnPlayPause.setImageResource(android.R.drawable.ic_media_pause);
                 holder.vvExerciseVideo.seekTo(1);
                 holder.vvExerciseVideo.start();
-                Toast.makeText(context, "start", Toast.LENGTH_SHORT).show();
             }
         }
     }

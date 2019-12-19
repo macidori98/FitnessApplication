@@ -45,6 +45,7 @@
         <item>Chest</item>
         <item>Back</item>
         <item>Shoulders</item>
+        <item>Others</item>
     </string-array>
 
     <string name="back_button_press">Please click BACK again to exit!</string>

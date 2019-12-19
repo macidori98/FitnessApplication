@@ -1,6 +1,7 @@
 package com.example.fitnessapplication.fragment.trainee;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -96,7 +97,7 @@ public class TraineeHomeFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                Log.i(Constant.FIREBASE_ON_CANCELLED, Constant.FIREBASE_ON_CANCELLED);
             }
         });
     }

@@ -1,6 +1,7 @@
 package com.example.fitnessapplication.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,11 +79,11 @@ public class RegistrationFragment extends Fragment {
 
                     if (!found) {
                         String KEY = mRef.push().getKey();
-                        if (selectedUserType.equals("Trainer")) {
+                        if (selectedUserType.equals(Constant.TRAINER)) {
                             User user = new User(KEY, etName.getText().toString(), etUsername.getText().toString(), etPassword.getText().toString(), true, false);
                             mRef.child(KEY).setValue(user);
                             Toast.makeText(getActivity(), R.string.reg_user_created, Toast.LENGTH_SHORT).show();
-                        } else if (selectedUserType.equals("Trainee")) {
+                        } else if (selectedUserType.equals(Constant.TRAINEE)) {
                             User user = new User(KEY, etName.getText().toString(), etUsername.getText().toString(), etPassword.getText().toString(), false, true);
                             mRef.child(KEY).setValue(user);
                             Toast.makeText(getActivity(), R.string.reg_user_created, Toast.LENGTH_SHORT).show();
@@ -94,7 +95,7 @@ public class RegistrationFragment extends Fragment {
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                    Log.i(Constant.FIREBASE_ON_CANCELLED, Constant.FIREBASE_ON_CANCELLED);
                 }
             });
         }
