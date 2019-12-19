@@ -68,6 +68,8 @@
     <string name="change_password_successful">Your password has been changed</string>
     <string name="old_new_password_match">Enter a new password</string>
     <string name="new_confirm_new_passwords_dont_match">The passwords do not match</string>
+    <string name="muscle_groups">Muscle groups</string>
+
 
     <string name="change_content_dialog_title">Change Content</string>
     <string name="cancel_change_content">Content was not changed</string>
