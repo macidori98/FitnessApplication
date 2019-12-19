@@ -46,6 +46,7 @@
         <item>Chest</item>
         <item>Back</item>
         <item>Shoulders</item>
+        <item>Others</item>
     </string-array>
 
     <string name="back_button_press">Please click BACK again to exit!</string>
@@ -68,5 +69,5 @@
     <string name="change_password_successful">Your password has been changed</string>
     <string name="old_new_password_match">Enter a new password</string>
     <string name="new_confirm_new_passwords_dont_match">The passwords do not match</string>
-
+    <string name="muscle_groups">Muscle groups</string>
 </resources>
