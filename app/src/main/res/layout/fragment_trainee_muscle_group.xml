@@ -5,6 +5,15 @@
     android:layout_marginTop="@dimen/dp20"
     android:orientation="vertical">
 
+    <TextView
+        android:text="@string/muscle_groups"
+        android:textSize="@dimen/sp30"
+        android:textColor="@color/colorText"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp10"/>
+
     <LinearLayout
         android:id="@+id/linearLayout_trainee_muscle_groups"
         android:layout_width="match_parent"

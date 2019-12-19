@@ -28,5 +28,13 @@ public class Constant {
     public static int VIDEO_POSITION;
     public static List<Trainer> TRAINERS_LIST;
     public static String FULL_SCREEN_STATUS = "mini";
-
+    public static final String MINI = "mini";
+    public static final String FULL = "full";
+    public static final String PAUSE = "pause";
+    public static final String RESUME = "resume";
+    public static final String CHANGE_CONTENT = "Change content";
+    public static final String DELETE_CONTENT = "Delete content";
+    public static final String FIREBASE_ON_CANCELLED = "on cancelled";
+    public static final String CHANGE_PASSWORD = "Change password";
+    public static final String CHANGE_NAME = "Change name";
 }

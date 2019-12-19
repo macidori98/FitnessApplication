@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import com.example.fitnessapplication.R;
 import com.example.fitnessapplication.fragment.changes_dialogs.ChangeNameDialog;
 import com.example.fitnessapplication.fragment.changes_dialogs.ChangePasswordDialog;
+import com.example.fitnessapplication.utils.Constant;
 
 public class TraineeSettingsFragment extends Fragment {
 
@@ -48,12 +49,12 @@ public class TraineeSettingsFragment extends Fragment {
 
     private void changePassword() {
         ChangePasswordDialog changePasswordDialog = new ChangePasswordDialog();
-        changePasswordDialog.show(getActivity().getSupportFragmentManager(), "Change password");
+        changePasswordDialog.show(getActivity().getSupportFragmentManager(), Constant.CHANGE_PASSWORD);
     }
 
     private void changeName() {
         ChangeNameDialog changeNameDialog = new ChangeNameDialog();
-        changeNameDialog.show(getActivity().getSupportFragmentManager(), "Change name");
+        changeNameDialog.show(getActivity().getSupportFragmentManager(), Constant.CHANGE_NAME);
     }
 
     private void initializeViewElements(View view) {
